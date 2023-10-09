@@ -1,0 +1,60 @@
+@include md {
+    .menu {
+        // .menu__container
+
+        &__container {
+            display: block;
+        }
+
+    }
+}
+
+@include sm {
+    .menu {
+        top: -490rem;
+
+        &.show {
+            transform: translateY(489rem);
+        }
+
+        // .menu__button
+
+        &__button {
+            img {
+                width: 33rem;
+            }
+        }
+
+        //.menu__bottom
+
+        &__bottom {
+            padding: 37rem 16rem 47rem;
+            gap: 53rem;
+        }
+
+        .nav {
+
+            // .nav__list
+
+            &__list {
+
+                height: fit-content;
+
+                &__item a {
+                    font-size: 16rem;
+                    line-height: 20rem;
+
+                    b {
+                        font-size: 16rem;
+                    }
+                }
+            }
+        }
+
+        .phone {
+            display: block;
+            font-size: 20rem;
+            line-height: 24rem;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+.catalog {
+    gap: 45rem;
+
+    &__top {
+        width: 100%;
+        gap: 40rem;
+    }
+
+    &__bottom {
+        width: 100%;
+        gap: 45rem;
+
+        .filter-sort {
+            width: 100%;
+        }
+    }
+
+    &__products {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 45rem 30rem;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}

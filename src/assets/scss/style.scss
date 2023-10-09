@@ -1,0 +1,217 @@
+@import 'additional/reset';
+@import 'additional/variables';
+@import 'additional/mixins';
+@import url(https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Inter&display=swap);
+
+html {
+   font-size: calc(1vw / 19.2);
+}
+
+.App {
+   min-height: 100vh;
+   position: relative;
+   @include container-vertical;
+}
+
+.outer__container {
+   padding: 0 16rem;
+}
+
+.container {
+   max-width: 1170rem;
+   width: 100%;
+}
+
+.container-vertical {
+   @include container-vertical;
+}
+
+.container-horisontal {
+   @include container-horisontal;
+}
+
+.preloader {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: #ffffff7f;
+   z-index: 10;
+   transition: all 0.2s ease-in-out;
+   justify-content: center;
+
+   &__gif {
+      width: 100rem;
+   }
+
+   &_absolute {
+      position: absolute;
+   }
+}
+
+
+.overlay {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   /* pointer-events: none; */
+   background: #0000004a;
+   z-index: 11;
+   transition: all 0.2s ease-in-out;
+
+   &.show {
+      opacity: 1;
+      visibility: visible;
+   }
+
+   &.hide {
+      opacity: 0;
+      visibility: hidden;
+   }
+
+}
+
+.logo__text {
+   @include logo__text;
+}
+
+.text__button {
+   @include text__button;
+}
+
+.headline {
+   @include headline;
+}
+
+.title {
+   @include title;
+}
+
+.subtitle {
+   @include subtitle;
+}
+
+.text {
+   @include text;
+}
+
+.text_light {
+   @include text_light;
+}
+
+.text_accent {
+   @include text_accent;
+}
+
+.text_alternates {
+   @include text_alternates;
+}
+
+.cat {
+   color: $cat;
+   font-size: 15rem;
+   font-weight: 500;
+   transition: all 0.2s ease-in-out;
+   -webkit-transition: all 0.2s ease-in-out;
+   -moz-transition: all 0.2s ease-in-out;
+   -o-transition: all 0.2s ease-in-out;
+   -ms-transition: all 0.2s ease-in-out;
+}
+
+.dog {
+   color: $dog;
+   font-size: 15rem;
+   font-weight: 500;
+   transition: all 0.2s ease-in-out;
+   -webkit-transition: all 0.2s ease-in-out;
+   -moz-transition: all 0.2s ease-in-out;
+   -o-transition: all 0.2s ease-in-out;
+   -ms-transition: all 0.2s ease-in-out;
+}
+
+.phone {
+   color: #000;
+   font-family: Montserrat;
+   font-size: 20rem;
+   font-style: normal;
+   font-weight: 500;
+   flex-shrink: 0;
+   line-height: 24rem;
+}
+
+.form__success {
+   color: #005c09;
+}
+
+.form__error {
+   color: red;
+}
+
+.button__icon_arrow {
+   width: 9.5rem;
+   height: 9.5rem;
+   transition: all 0.2s ease-in-out;
+}
+
+.close__icon {
+   width: 47rem;
+   height: 47rem;
+   border-radius: 50%;
+   cursor: pointer;
+   transition: all 0.2s ease-in-out;
+
+   &:hover {
+      background-color: #F1E6FF;
+   }
+}
+
+.main {
+   width: 100%;
+   flex: 1 0 auto;
+   /* min-height: 100vh; */
+}
+
+.page-container {
+   padding: 125rem 0 80rem;
+   width: 100%;
+}
+
+@import '@styles/scss/components/base/Header/header';
+@import '@styles/scss/components/base/Menu/menu';
+@import '@styles/scss/components/base/Slider/slider';
+@import '@styles/scss/components/Home/Popular/popular';
+@import '@styles/scss/components/base/ProductCard/product_card';
+@import '@styles/scss/components/base/Button/button';
+@import '@styles/scss/components/base/ForCatDogButton/for_cat_dog_button';
+@import '@styles/scss/components/base/ReviewCard/review_card';
+@import '@styles/scss/components/base/Footer/footer';
+@import '@styles/scss/components/Catalog/catalog';
+@import '@styles/scss/components/base/Breadcrumbs/breadcrumbs';
+@import '@styles/scss/components/Catalog/Category/category';
+@import '@styles/scss/components/Catalog/Filter/filter';
+@import '@styles/scss/components/Catalog/Sort/sort';
+@import '@styles/scss/components/Catalog/Pagination/pagination';
+@import '@styles/scss/components/Product/product';
+@import '@styles/scss/components/Product/ProductPhotos/product_photos';
+@import '@styles/scss/components/Product/ProductOptions/product_options';
+@import '@styles/scss/components/Product/ProductContent/product_content';
+@import '@styles/scss/components/Product/ProductNavigation/product_navigation';
+@import '@styles/scss/components/Product/ProductReviews/product_reviews';
+@import '@styles/scss/components/Product/AddReview/add_review';
+@import '@styles/scss/components/Product/ProductDescription/product_description';
+
+/* media */
+
+@import 'style_media';
+@import '@styles/scss/components/base/Header/header_media';
+@import '@styles/scss/components/base/Menu/menu_media';
+@import '@styles/scss/components/base/Slider/slider_media';
+@import '@styles/scss/components/Home/Popular/popular_media';
+@import '@styles/scss/components/base/ProductCard/product_card_media';
+@import '@styles/scss/components/base/Button/button_media';
+@import '@styles/scss/components/base/ForCatDogButton/for_cat_dog_button_media';
+@import '@styles/scss/components/base/ReviewCard/review_card_media';
+@import '@styles/scss/components/base/Footer/footer_media';

@@ -1,0 +1,44 @@
+.slider {
+
+    // .slider__button
+
+    &__button {
+        display: block;
+        width: 59rem;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 8;
+
+        img{
+            width: 100%;
+        }
+    }
+}
+    // .slider__dots
+
+    swiper-container::part(container) {
+        overflow-y: visible;
+    }
+
+    swiper-container::part(pagination) {
+        display: flex;
+        justify-content: center;
+        bottom: 40rem;
+        gap: 14rem;
+    }
+
+    swiper-container::part(bullet){
+        width: 13rem;
+        height: 13rem;
+        border-radius: 50%;
+        background: $transparent-white;
+        flex-shrink: 0;
+    }
+
+    swiper-container::part(bullet-active) {
+        background: #FFF;
+        width: 13rem;
+        height: 13rem;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }

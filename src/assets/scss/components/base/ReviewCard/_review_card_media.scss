@@ -1,0 +1,33 @@
+@include md {
+    .review-card {
+        width: 360rem;
+    }
+}
+
+@include sm {
+    .review-card {
+        width: 288rem;
+        padding: 29.5rem 30rem 38rem 30rem;
+        gap: 21rem;
+
+        &__date {
+            font-size: 12rem;
+            height: 13rem;
+        }
+
+        &__name {
+            font-size: 14rem;
+        }
+
+        &__photos {
+            // .review-card__photos__item
+
+            &__item {
+                height: 65rem;
+                &_MD {
+                    display: none;
+                }
+            }
+        }
+    }
+}

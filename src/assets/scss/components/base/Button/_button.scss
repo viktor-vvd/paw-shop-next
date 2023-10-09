@@ -1,0 +1,70 @@
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem 20rem;
+    gap: 15rem;
+    flex-shrink: 0;
+    border-radius: $border-radius;
+    background: $accent;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    // .button__text
+
+    .text__button {
+        color: #FFF;
+    }
+
+    // .button__icon
+
+    &__icon {
+        width: 20rem;
+        transition: all 0.2s ease-in-out;
+
+        &_arrow_right {
+            width: 10rem;
+            height: 10rem;
+        }
+
+        &_oauth{
+            width: 40rem;
+            height: 40rem;
+       }
+    }
+
+    &:hover {
+        @include button__icon_arrow_hover;
+        background: $dark;
+    }
+
+    // .button_white
+
+    &_white {
+        background: #FFF;
+        border: 1px solid $accent;
+
+        .text__button {
+            color: $accent;
+        }
+
+        &:hover {
+            background: #F1E6FF;
+        }
+    }
+
+    // .button_oauth
+
+    &_oauth {
+        background: #F5F5F5;
+        flex-direction: row-reverse;
+
+        .text__button {
+            color: #000;
+        }
+
+        &:hover {
+            background: #F1E6FF;
+        }
+    }
+}

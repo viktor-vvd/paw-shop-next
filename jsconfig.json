@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@images/*": ["./public/images/*"],
+      "@styles/*": ["./src/assets/*"],
+      "@imports/*": ["./src/imports/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@api/*": ["./src/api/*"],
     }
   }
 }

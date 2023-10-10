@@ -17,7 +17,7 @@ const ProductPage = () => {
   const [catalogItemGET, { data, isFetching }] = useLazyCatalogItemGETQuery();
 
   useEffect(() => {
-    catalogItemGET(productSlug);
+    productSlug!=undefined&&catalogItemGET(productSlug);
   }, [productSlug]);
 
   return (

@@ -14,8 +14,8 @@ import { catalogApi } from "api/catalogApi";
 import { cartApi } from "api/cartApi"; */
 
 const Header = ({ isCheckout = false }) => {
-/*   const dispatch = useDispatch();
   const [offset, setOffset] = useState(0);
+  /*   const dispatch = useDispatch();
   const [access_token, setAccess_token] = useState(Cookies.get("access_token"));
   const isAuth = useSelector((state) => state.auth.isAuth);
   const [auth, setAuth] = useState(access_token || isAuth);
@@ -41,20 +41,19 @@ const Header = ({ isCheckout = false }) => {
       dispatch(cartApi.util.invalidateTags(["Cart"]));
       console.log(result.data);
     }
-  };
+  }; */
 
   useEffect(() => {
     const onScroll = () => setOffset(window.scrollY);
     window.removeEventListener("scroll", onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
-    setAuth(access_token || isAuth);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isAuth, access_token]);
- */
+  }, []);
+
   return (
     <header
       className={
-        /* offset > 3 */true
+        offset > 3
           ? "container-horisontal outer__container header header_scrolled"
           : "container-horisontal outer__container header"
       }
@@ -99,7 +98,7 @@ const Header = ({ isCheckout = false }) => {
             </Link>
             <div className="container-horisontal header__buttons">
               <div>
-                {/* {auth ? ( */}
+                 {/*{auth ? ( 
                   <IoLogOutOutline
                     className="profile"
                     loading="lazy"
@@ -107,9 +106,9 @@ const Header = ({ isCheckout = false }) => {
                     width="26"
                     height="26"
                     title="Logout"
-                    /* onClick={onLogout} */
+                    onClick={onLogout}
                   />
-                {/* ) : ( 
+                 ) : ( */}
                   <Image
                     className="profile"
                     src={images["user"]}
@@ -118,9 +117,9 @@ const Header = ({ isCheckout = false }) => {
                     width="26"
                     height="26"
                     title="Authorise"
-                    onClick={() => dispatch(setAuthModal(true))}
+                    /* onClick={() => dispatch(setAuthModal(true))} */
                   />
-                 )} */}
+                 {/*)} */}
               </div>
               <div className="container-horisontal header__cart">
                 <div
@@ -135,9 +134,9 @@ const Header = ({ isCheckout = false }) => {
                     width="26"
                     height="26"
                   />
-                  <span className="header__cart__number">0{/* {cartCount} */}</span>
+                  <span className="header__cart__number">1{/* {cartCount} */}</span>
                 </div>
-                <span className="header__cart__sum">$1{/* {cartTotal} */}</span>
+                <span className="header__cart__sum">$0{/* {cartTotal} */}</span>
               </div>
               <Menu />
             </div>

@@ -1,18 +1,17 @@
-/* import {
-    useCatalogListGETQuery,
-    useLazyCatalogListGETQuery,
-  } from "api/catalogApi"; */
+import {
+  useCatalogListGETQuery,
+  useLazyCatalogListGETQuery,
+} from "@api/catalogApi";
 import Category from "@components/Catalog/Category";
 import Filter from "@components/Catalog/Filter";
-/* import Pagination from "@components/Catalog/Pagination"; */
+import Pagination from "@components/Catalog/Pagination";
 import Sort from "@components/Catalog/Sort";
 import { useRouter } from "next/router";
-/* import Breadcrumbs from "components/base/Breadcrumbs";
-  import Preloader from "components/base/Preloader";
-  import ProductCard from "components/base/ProductCard"; */
+import Preloader from "@components/base/Preloader";
+import ProductCard from "@components/base/ProductCard";
+/* import Breadcrumbs from "components/base/Breadcrumbs"; */
 import React, { useState, useEffect } from "react";
-/*   import { useNavigate, useParams } from "react-router-dom";
- */
+
 const CatalogPage = () => {
   const router = useRouter();
   const { slug, sort, order, page } = router.query;
@@ -20,7 +19,7 @@ const CatalogPage = () => {
       const params = new URLSearchParams(window.location.search);
     const { slug } = useParams();*/
 
-  /* const [catalogListGET, { data, isFetching }] = useLazyCatalogListGETQuery();*/
+  const [catalogListGET, { data, isFetching }] = useLazyCatalogListGETQuery();
 
   const [itemsPerPage, setitemsPerPage] = useState(1);
 
@@ -50,20 +49,20 @@ const CatalogPage = () => {
     setCurrentPage(1);
   };
 
-  /* useEffect(() => {
-      catalogListGET({
-        page: currentPage,
-        per_page: itemsPerPage,
-        sort: sortValue.sort,
-        order: sortValue.order,
-        category: slug,
-      });
-    }, [slug, currentPage, sortValue, navigate]); */
+  useEffect(() => {
+    catalogListGET({
+      page: currentPage,
+      per_page: itemsPerPage,
+      sort: sortValue.sort,
+      order: sortValue.order,
+      category: slug,
+    });
+  }, [slug, currentPage, sortValue]);
 
   return (
     <>
-      {/* {isFetching && <Preloader />} */}
-      {/* {data && ( */}
+      {isFetching && <Preloader />}
+      {data && (
       <div className="container-vertical page-container catalog">
         <div className="container-vertical catalog__top">
           {/* <Breadcrumbs item={{ slug: slug }} /> */}
@@ -76,22 +75,22 @@ const CatalogPage = () => {
             <Sort sortValue={sortValue} handleSortChange={handleSortChange} />
           </div>
           <div className="container-horisontal container catalog__products">
-            {/* {data?.data &&
+            {data?.data &&
                   data.data.map((item, index) => (
                     <ProductCard item={item} key={index} />
-                  ))} */}
+                  ))}
           </div>
-          {/* {data && data.meta.last_page > 1 && (
+          {data && data.meta.last_page > 1 && (
                 <Pagination
                   setCurrentPage={setCurrentPage}
                   pageCount={data.meta.last_page}
                   forcePage={data.meta.current_page}
                   onPageChange={handlePagination}
                 />
-              )} */}
+              )}
         </div>
       </div>
-      {/*  )} */}
+       )}
     </>
   );
 };

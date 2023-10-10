@@ -21,41 +21,10 @@ export const catalogApi = createApi({
         return {
           url: `variation/${data}`,
           method: `GET`,
-          /* params: data, */
         };
       },
       providesTags: ["Catalog"],
     }),
-    /* pageHomeGET: builder.query({
-      query: () => {
-        return {
-          url: `pages/home`,
-          method: `GET`,
-        };
-      },
-      providesTags: ["page"],
-    }), */
-/*     createProject: builder.mutation({
-      query: (data) => {
-        return {
-          url: `project/manage_project/`,
-          method: `POST`,
-          body: data,
-        };
-      },
-      invalidatesTags:["Projects"],
-    }),
- *//*     delete: builder.mutation({
-      query: (data) => {
-        return {
-          url: `notifications/`,
-          method: `DELETE`,
-          body: data,
-        };
-      },
-      invalidatesTags:["Notifications"],
-    }), */
-
   }),
 });
 export const {

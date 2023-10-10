@@ -6,16 +6,6 @@ export const pageApi = createApi({
   baseQuery: baseQuery,
   tagTypes: ["Pages"],
   endpoints: (builder) => ({
-/*     projectsGET: builder.query({
-      query: (data) => {
-        return {
-          url: `project/user_projects/`,
-          method: `GET`,
-          body: data,
-        };
-      },
-      providesTags: ["Projects"],
-    }), */
     pageHomeGET: builder.query({
       query: () => {
         return {
@@ -23,28 +13,8 @@ export const pageApi = createApi({
           method: `GET`,
         };
       },
-      providesTags: ["page"],
+      providesTags: ["Pages"],
     }),
-/*     createProject: builder.mutation({
-      query: (data) => {
-        return {
-          url: `project/manage_project/`,
-          method: `POST`,
-          body: data,
-        };
-      },
-      invalidatesTags:["Projects"],
-    }),
- *//*     delete: builder.mutation({
-      query: (data) => {
-        return {
-          url: `notifications/`,
-          method: `DELETE`,
-          body: data,
-        };
-      },
-      invalidatesTags:["Notifications"],
-    }), */
 
   }),
 });

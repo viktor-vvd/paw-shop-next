@@ -14,7 +14,7 @@ export const commentsApi = createApi({
           params:data,
         };
       },
-      providesTags: ["Catalog"],
+      providesTags: ["Comment"],
     }),
     commentsProductListGET: builder.query({
       query: ({data, id}) => {
@@ -24,7 +24,7 @@ export const commentsApi = createApi({
           params:data,
         };
       },
-      providesTags: ["Catalog"],
+      providesTags: ["Comment"],
     }),
     commentsAddPOST: builder.mutation({
       query: ({data, id}) => {
@@ -35,38 +35,8 @@ export const commentsApi = createApi({
           body: data,
         };
       },
-      invalidatesTags:["Projects"],
+      invalidatesTags:["Comment"],
     }),
-    /* pageHomeGET: builder.query({
-      query: () => {
-        return {
-          url: `pages/home`,
-          method: `GET`,
-        };
-      },
-      providesTags: ["page"],
-    }), */
-/*     createProject: builder.mutation({
-      query: (data) => {
-        return {
-          url: `project/manage_project/`,
-          method: `POST`,
-          body: data,
-        };
-      },
-      invalidatesTags:["Projects"],
-    }),
- *//*     delete: builder.mutation({
-      query: (data) => {
-        return {
-          url: `notifications/`,
-          method: `DELETE`,
-          body: data,
-        };
-      },
-      invalidatesTags:["Notifications"],
-    }), */
-
   }),
 });
 export const {

@@ -2,7 +2,7 @@ import Footer from "@components/base/Footer";
 import Header from "@components/base/Header/Header";
 import React from "react";
 
-/*import { Montserrat_Alternates, Montserrat, Amatic_SC } from 'next/font/google';
+import { Montserrat_Alternates, Montserrat, Amatic_SC } from 'next/font/google';
 
  const montserrat_alternates = Montserrat_Alternates({
   weight: ['300', '400', '500', '700', '900'],
@@ -21,17 +21,17 @@ export const montserrat = Montserrat({
   style: ['normal'],
   subsets: ['latin'],
   display: 'swap',
-}); */
+});
 
 const DefaultLayout = ({ children }) => {
   return (
-    <>
-      <Header />
+    <div className={`App ${montserrat_alternates.className}`}>
+    <Header />
       <main className="main container-vertical">
         {children}
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

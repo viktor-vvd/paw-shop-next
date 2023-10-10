@@ -41,7 +41,6 @@ const ProductOptions = ({ item }) => {
   useEffect(() => {
     setDataItem(item);
     setQuantity(item.data.min_qty);
-    console.log(dataItem);
   }, [dataItem, item]);
 
   return (

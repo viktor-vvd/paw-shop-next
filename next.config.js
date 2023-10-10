@@ -1,18 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-        appDir: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "dropshop.demka.online",
+        port: "",
+        pathname: "/**",
       },
-      images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: 'dropshop.demka.online',
-            port: '',
-            pathname: '/**',
-          },
-        ],
-      },
-}
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

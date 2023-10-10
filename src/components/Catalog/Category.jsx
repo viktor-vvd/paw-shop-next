@@ -6,13 +6,10 @@ import React from "react";
 
 const Category = ({ item, setCurrentPage }) => {
   const router = useRouter();
-  const {slug, sort, order, page} = router.query;
-/*   const navigate = useNavigate();
-  const params = new URLSearchParams(window.location.search); */
+  const {categorySlug, sort, order, page} = router.query;
 
   const handleOptionChange = (changeEvent) => {
     router.push(`/catalog/${changeEvent.target.value}?sort=${sort || "default"}&order=${order || "desc"}&page=1`);
-    /* navigate(`/catalog/${changeEvent.target.value}?sort=${params.get("sort") || "default"}&order=${params.get("order") || "desc"}&page=1`);*/
     setCurrentPage(1); 
   };
 

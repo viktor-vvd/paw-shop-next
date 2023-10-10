@@ -14,10 +14,7 @@ import React, { useState, useEffect } from "react";
 
 const CatalogPage = () => {
   const router = useRouter();
-  const { slug, sort, order, page } = router.query;
-  /*     const navigate = useNavigate();
-      const params = new URLSearchParams(window.location.search);
-    const { slug } = useParams();*/
+  const { categorySlug, sort, order, page } = router.query;
 
   const [catalogListGET, { data, isFetching }] = useLazyCatalogListGETQuery();
 
@@ -32,14 +29,14 @@ const CatalogPage = () => {
 
   const handlePagination = (selectedPage) => {
     router.push(
-      `/catalog/${slug}?sort=${sortValue.sort}&order=${sortValue.order}&page=${selectedPage}`
+      `/catalog/${categorySlug}?sort=${sortValue.sort}&order=${sortValue.order}&page=${selectedPage}`
     );
     setCurrentPage(selectedPage);
   };
 
   const handleSortChange = (event) => {
     router.push(
-      `/catalog/${slug}?sort=${JSON.parse(event.target.value)?.sort}&order=${
+      `/catalog/${categorySlug}?sort=${JSON.parse(event.target.value)?.sort}&order=${
         JSON.parse(event.target.value)?.order
           ? JSON.parse(event.target.value)?.order
           : `desc`
@@ -55,9 +52,9 @@ const CatalogPage = () => {
       per_page: itemsPerPage,
       sort: sortValue.sort,
       order: sortValue.order,
-      category: slug,
+      category: categorySlug,
     });
-  }, [slug, currentPage, sortValue]);
+  }, [categorySlug, currentPage, sortValue]);
 
   return (
     <>
@@ -67,7 +64,7 @@ const CatalogPage = () => {
         <div className="container-vertical catalog__top">
           {/* <Breadcrumbs item={{ slug: slug }} /> */}
           <h2 className="title">Catalog</h2>
-          <Category item={{ slug: slug }} setCurrentPage={setCurrentPage} />
+          <Category item={{ slug: categorySlug }} setCurrentPage={setCurrentPage} />
         </div>
         <div className="container-vertical outer__container catalog__bottom">
           <div className="container-horisontal container filter-sort">

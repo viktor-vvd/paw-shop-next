@@ -10,9 +10,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ProductCard = ({ item }) => {
-  /* const dispatch = useDispatch(); */
-
-  /* const [addToCart, { data }] = useAddToCartPOSTMutation(); */
+  /* const dispatch = useDispatch(); 
+  const [addToCart, { data }] = useAddToCartPOSTMutation(); */
 
   const handleAddToCart = async () => {
 /*     const result = await addToCart({

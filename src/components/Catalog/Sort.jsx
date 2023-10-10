@@ -4,12 +4,12 @@ import React from "react";
 
 const Sort = ({sortValue = { sort: "default", order: "desc" }, handleSortChange}) => {
   const router = useRouter();
-  const {slug, sort, order, page} = router.query;
+  const {categorySlug, sort, order, page} = router.query;
   /* const navigate = useNavigate();
   const { slug } = useParams(); */
 
   const handleOptionChange = (event) => {
-    router.push(`/catalog/${slug}?sort=${JSON.parse(event.target.value)?.sort}&order=${JSON.parse(event.target.value)?.order?(JSON.parse(event.target.value)?.order):(`desc`)}&page=1`);
+    router.push(`/catalog/${categorySlug}?sort=${JSON.parse(event.target.value)?.sort}&order=${JSON.parse(event.target.value)?.order?(JSON.parse(event.target.value)?.order):(`desc`)}&page=1`);
     setSortValue(JSON.parse(event.target.value));
   };
   return (

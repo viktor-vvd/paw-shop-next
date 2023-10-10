@@ -24,27 +24,29 @@ const ProductReviews = ({ item }) => {
     <>
       {isFetching && <Preloader className="preloader_absolute" />}
       {data?.data && (
-        <div className="container-vertical product__reviews">
-          <div className="container-horisontal product__reviews__rate">
-            <div className="container-horisontal rate__stars">
-              <RatingStars value={parseFloat(data.total.avg)} size="40" />
+          <div className="container-vertical product__reviews">
+            <div className="container-horisontal product__reviews__rate">
+              <div className="container-horisontal rate__stars">
+                <RatingStars value={parseFloat(data.total.avg)} size="40" />
+              </div>
+              <span className="text rate__text">
+                {item.data.product.rating}
+              </span>
             </div>
-            <span className="text rate__text">{item.data.product.rating}</span>
+            <div className="container-vertical product__reviews__list">
+              {data.data.map((item, index) => (
+                <ReviewCard item={item} key={index} link={false} />
+              ))}
+            </div>
+            {data.meta.last_page > 1 && (
+              <Pagination
+                setCurrentPage={setCurrentPage}
+                pageCount={data.meta.last_page}
+                forcePage={data.meta.current_page}
+                onPageChange={setCurrentPage}
+              />
+            )}
           </div>
-          <div className="container-vertical product__reviews__list">
-            {data.data.map((item, index) => (
-              <ReviewCard item={item} key={index} link={false} />
-            ))}
-          </div>
-          {data.meta.last_page > 1 && (
-            <Pagination
-              setCurrentPage={setCurrentPage}
-              pageCount={data.meta.last_page}
-              forcePage={data.meta.current_page}
-              onPageChange={setCurrentPage}
-            />
-          )}
-        </div>
       )}
     </>
   );

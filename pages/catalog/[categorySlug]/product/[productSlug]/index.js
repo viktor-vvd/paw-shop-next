@@ -7,6 +7,7 @@ import ProductPhotos from "@components/Product/ProductPhotos";
 /* import Breadcrumbs from "@components/base/Breadcrumbs"; */
 import Preloader from "@components/base/Preloader";
 import RatingStars from "@components/base/RatingStars";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
@@ -15,7 +16,7 @@ const ProductPage = () => {
   const { productSlug } = router.query;
 
   const [catalogItemGET, { data, isFetching }] = useLazyCatalogItemGETQuery();
-
+console.log(data);
   useEffect(() => {
     productSlug!=undefined&&catalogItemGET(productSlug);
   }, [productSlug]);
@@ -24,6 +25,13 @@ const ProductPage = () => {
     <>
       {isFetching && <Preloader />}
       {data?.data && (
+        <>
+        <Head>
+          <title>{data.seo.title}</title>
+          {Object.keys(data.seo).map((item, index) => (
+              <meta property={item} content={data.seo[item]} key={item} />
+            ))}
+        </Head>
         <div className="container-vertical page-container product">
           <section className="container-vertical outer-container product__wrapper">
             <div className="container-vertical container product__breadcrumbs">
@@ -59,6 +67,7 @@ const ProductPage = () => {
             className="product__recommendations"
           />
         </div>
+        </>
       )}
     </>
   );

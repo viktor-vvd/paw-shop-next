@@ -11,6 +11,7 @@ import Preloader from "@components/base/Preloader";
 import ProductCard from "@components/base/ProductCard";
 /* import Breadcrumbs from "components/base/Breadcrumbs"; */
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
 
 const CatalogPage = () => {
   const router = useRouter();
@@ -36,7 +37,9 @@ const CatalogPage = () => {
 
   const handleSortChange = (event) => {
     router.push(
-      `/catalog/${categorySlug}?sort=${JSON.parse(event.target.value)?.sort}&order=${
+      `/catalog/${categorySlug}?sort=${
+        JSON.parse(event.target.value)?.sort
+      }&order=${
         JSON.parse(event.target.value)?.order
           ? JSON.parse(event.target.value)?.order
           : `desc`
@@ -60,24 +63,37 @@ const CatalogPage = () => {
     <>
       {isFetching && <Preloader />}
       {data && (
-      <div className="container-vertical page-container catalog">
-        <div className="container-vertical catalog__top">
-          {/* <Breadcrumbs item={{ slug: slug }} /> */}
-          <h2 className="title">Catalog</h2>
-          <Category item={{ slug: categorySlug }} setCurrentPage={setCurrentPage} />
-        </div>
-        <div className="container-vertical outer__container catalog__bottom">
-          <div className="container-horisontal container filter-sort">
-            <Filter />
-            <Sort sortValue={sortValue} handleSortChange={handleSortChange} />
-          </div>
-          <div className="container-horisontal container catalog__products">
-            {data?.data &&
+        <>
+          <Head>
+            {Object.keys(data.seo).map((item, index) => (
+              <meta property={item} content={data.seo[item]} key={item} />
+            ))}
+          </Head>
+
+          <div className="container-vertical page-container catalog">
+            <div className="container-vertical catalog__top">
+              {/* <Breadcrumbs item={{ slug: slug }} /> */}
+              <h2 className="title">Catalog</h2>
+              <Category
+                item={{ slug: categorySlug }}
+                setCurrentPage={setCurrentPage}
+              />
+            </div>
+            <div className="container-vertical outer__container catalog__bottom">
+              <div className="container-horisontal container filter-sort">
+                <Filter />
+                <Sort
+                  sortValue={sortValue}
+                  handleSortChange={handleSortChange}
+                />
+              </div>
+              <div className="container-horisontal container catalog__products">
+                {data?.data &&
                   data.data.map((item, index) => (
                     <ProductCard item={item} key={index} />
                   ))}
-          </div>
-          {data && data.meta.last_page > 1 && (
+              </div>
+              {data && data.meta.last_page > 1 && (
                 <Pagination
                   setCurrentPage={setCurrentPage}
                   pageCount={data.meta.last_page}
@@ -85,9 +101,10 @@ const CatalogPage = () => {
                   onPageChange={handlePagination}
                 />
               )}
-        </div>
-      </div>
-       )}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

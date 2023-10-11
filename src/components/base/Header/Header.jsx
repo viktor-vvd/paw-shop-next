@@ -76,7 +76,7 @@ const Header = ({ isCheckout = false }) => {
             <nav className="header__nav">
               <ul className="container-horisontal nav__list">
                 <li className="nav__list__item">
-                  <Link href="/catalog/cat?sort=default&order=desc&page=1">
+                  <Link href={"/catalog/"+JSON.stringify({category:"cat", sort: "rating", order: "desc", page:1})}>
                     For <b>CAT</b>
                   </Link>
                 </li>

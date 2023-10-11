@@ -1,6 +1,6 @@
 import React from "react";
 
-const Home = () => {
+const Home = ({}) => {
   return (
     <div className="container-vertical page-container">
       <div className="title">Home</div>

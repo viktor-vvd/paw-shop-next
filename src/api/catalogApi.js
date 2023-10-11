@@ -1,10 +1,15 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "./api.config";
+import { HYDRATE } from "next-redux-wrapper";
 
 export const catalogApi = createApi({
   reducerPath: "catalogApi",
   baseQuery: baseQuery,
-  tagTypes: ["Catalog"],
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath];
+    }
+  },
   endpoints: (builder) => ({
     catalogListGET: builder.query({
       query: (data) => {
@@ -14,7 +19,6 @@ export const catalogApi = createApi({
           params: data,
         };
       },
-      providesTags: ["Catalog"],
     }),
     catalogItemGET: builder.query({
       query: (data) => {
@@ -23,7 +27,6 @@ export const catalogApi = createApi({
           method: `GET`,
         };
       },
-      providesTags: ["Catalog"],
     }),
   }),
 });
@@ -32,4 +35,6 @@ export const {
   useLazyCatalogListGETQuery,
   useCatalogItemGETQuery,
   useLazyCatalogItemGETQuery,
+  util: { getRunningQueriesThunk,getRunningMutationsThunk },
 } = catalogApi;
+export const { catalogListGET, catalogItemGET } = catalogApi.endpoints;

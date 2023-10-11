@@ -6,10 +6,20 @@ import React from "react";
 
 const Category = ({ item, setCurrentPage }) => {
   const router = useRouter();
-  const {categorySlug, sort, order, page} = router.query;
+  const { category, sort, order, page } = JSON.parse(
+    router.query?.categoryParams
+  );
 
   const handleOptionChange = (changeEvent) => {
-    router.push(`/catalog/${changeEvent.target.value}?sort=${sort || "default"}&order=${order || "desc"}&page=1`);
+    router.push(
+      "/catalog/" +
+        JSON.stringify({
+          category: changeEvent.target.value,
+          sort: sort,
+          order: order,
+          page: 1,
+        })
+    );
     setCurrentPage(1); 
   };
 

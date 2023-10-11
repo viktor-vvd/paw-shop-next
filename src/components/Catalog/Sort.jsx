@@ -8,10 +8,6 @@ const Sort = ({sortValue = { sort: "default", order: "desc" }, handleSortChange}
   /* const navigate = useNavigate();
   const { slug } = useParams(); */
 
-  const handleOptionChange = (event) => {
-    router.push(`/catalog/${categorySlug}?sort=${JSON.parse(event.target.value)?.sort}&order=${JSON.parse(event.target.value)?.order?(JSON.parse(event.target.value)?.order):(`desc`)}&page=1`);
-    setSortValue(JSON.parse(event.target.value));
-  };
   return (
     <div className="container-horisontal sort__container">
       <span className="text sort__text">Sort by:</span>

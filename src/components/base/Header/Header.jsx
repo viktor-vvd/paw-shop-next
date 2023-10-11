@@ -81,7 +81,7 @@ const Header = ({ isCheckout = false }) => {
                   </Link>
                 </li>
                 <li className="nav__list__item">
-                  <Link href="/catalog/dog?sort=default&order=desc&page=1">
+                  <Link href={"/catalog/"+JSON.stringify({category:"dog", sort: "rating", order: "desc", page:1})}>
                     For <b>DOG</b>
                   </Link>
                 </li>

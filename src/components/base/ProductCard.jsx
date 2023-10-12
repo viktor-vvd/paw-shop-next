@@ -14,7 +14,7 @@ const ProductCard = ({ item }) => {
   const [addToCart, { data }] = useAddToCartPOSTMutation(); */
 
   const handleAddToCart = async () => {
-/*     const result = await addToCart({
+    /*     const result = await addToCart({
       id: item.id,
       data: { quantity: 1 },
     });
@@ -25,7 +25,8 @@ const ProductCard = ({ item }) => {
       console.log({onadd: Cookies.get("cart_id")});
       dispatch(cartApi.util.invalidateTags(['Cart']));
     }
- */  };
+ */
+  };
 
   return (
     <div className="container-vertical product-card">
@@ -52,7 +53,9 @@ const ProductCard = ({ item }) => {
         </Link>
       </div>
       <Link
-        href={"/catalog/" + item.product.category.slug + "/product/" + item.slug}
+        href={
+          "/catalog/" + item.product.category.slug + "/product/" + item.slug
+        }
         className="text product-card__title"
       >
         {item.name}

@@ -18,10 +18,13 @@ import { skipToken } from "@reduxjs/toolkit/query";
 
 export default function CatalogPage() {
   const router = useRouter();
-  const { category, sort, order, page } = JSON.parse(
-    router.query?.categoryParams
-  );
-  
+  const {
+    categorySlug: category,
+    sort,
+    order,
+    page,
+  } = JSON.parse(JSON.stringify(router.query));
+
   const [itemsPerPage, setitemsPerPage] = useState(1);
 
   const [currentPage, setCurrentPage] = useState(Number(page) || 1);
@@ -33,28 +36,20 @@ export default function CatalogPage() {
 
   const handlePagination = (selectedPage) => {
     router.push(
-      "/catalog/" +
-        JSON.stringify({
-          category: category,
-          sort: sort,
-          order: order,
-          page: selectedPage,
-        })
+      `/catalog/${category}?sort=${sort}&order=${order}&page=${selectedPage}`
     );
     setCurrentPage(selectedPage);
   };
 
   const handleSortChange = (event) => {
     router.push(
-      "/catalog/" +
-        JSON.stringify({
-          category: category,
-          sort: JSON.parse(event.target.value)?.sort,
-          order: JSON.parse(event.target.value)?.order
-            ? JSON.parse(event.target.value)?.order
-            : `desc`,
-          page: 1,
-        })
+      `/catalog/${category}?sort=${
+        JSON.parse(event.target.value)?.sort
+      }&order=${
+        JSON.parse(event.target.value)?.order
+          ? JSON.parse(event.target.value)?.order
+          : `desc`
+      }&page=1`
     );
     setSortValue(JSON.parse(event.target.value));
     setCurrentPage(1);
@@ -131,9 +126,7 @@ export default function CatalogPage() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    const { category, sort, order, page } = JSON.parse(
-      context.params?.categoryParams
-    );
+    const { categorySlug: category, sort, order, page } = context.query;
     if (category) {
       store.dispatch(
         catalogListGET.initiate({

@@ -76,12 +76,12 @@ const Header = ({ isCheckout = false }) => {
             <nav className="header__nav">
               <ul className="container-horisontal nav__list">
                 <li className="nav__list__item">
-                  <Link href={"/catalog/"+JSON.stringify({category:"cat", sort: "rating", order: "desc", page:1})}>
+                  <Link href="/catalog/cat?sort=default&order=desc&page=1">
                     For <b>CAT</b>
                   </Link>
                 </li>
                 <li className="nav__list__item">
-                  <Link href={"/catalog/"+JSON.stringify({category:"dog", sort: "rating", order: "desc", page:1})}>
+                  <Link href="/catalog/dog?sort=default&order=desc&page=1">
                     For <b>DOG</b>
                   </Link>
                 </li>
@@ -98,7 +98,7 @@ const Header = ({ isCheckout = false }) => {
             </Link>
             <div className="container-horisontal header__buttons">
               <div>
-                 {/*{auth ? ( 
+                {/*{auth ? ( 
                   <IoLogOutOutline
                     className="profile"
                     loading="lazy"
@@ -109,17 +109,17 @@ const Header = ({ isCheckout = false }) => {
                     onClick={onLogout}
                   />
                  ) : ( */}
-                  <Image
-                    className="profile"
-                    src={images["user"]}
-                    loading="lazy"
-                    alt="user"
-                    width="26"
-                    height="26"
-                    title="Authorise"
-                    /* onClick={() => dispatch(setAuthModal(true))} */
-                  />
-                 {/*)} */}
+                <Image
+                  className="profile"
+                  src={images["user"]}
+                  loading="lazy"
+                  alt="user"
+                  width="26"
+                  height="26"
+                  title="Authorise"
+                  /* onClick={() => dispatch(setAuthModal(true))} */
+                />
+                {/*)} */}
               </div>
               <div className="container-horisontal header__cart">
                 <div
@@ -134,7 +134,9 @@ const Header = ({ isCheckout = false }) => {
                     width="26"
                     height="26"
                   />
-                  <span className="header__cart__number">1{/* {cartCount} */}</span>
+                  <span className="header__cart__number">
+                    1{/* {cartCount} */}
+                  </span>
                 </div>
                 <span className="header__cart__sum">$0{/* {cartTotal} */}</span>
               </div>

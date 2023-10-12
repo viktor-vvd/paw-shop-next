@@ -58,7 +58,7 @@ export default function CatalogPage() {
     typeof category === "string"
       ? {
           page: page,
-          per_page: 1,
+          per_page: itemsPerPage,
           sort: sort,
           order: order,
           category: category,

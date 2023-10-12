@@ -7,15 +7,21 @@ import {
 /* import PopularProducts from "@components/Home/PopularProducts"; */
 import ProductContent from "@components/Product/ProductContent/ProductContent";
 import ProductOptions from "@components/Product/ProductOptions";
-import ProductPhotos from "@components/Product/ProductPhotos";
 /* import Breadcrumbs from "@components/base/Breadcrumbs"; */
 import Preloader from "@components/base/Preloader";
-import RatingStars from "@components/base/RatingStars";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 import { wrapper } from "@/redux/store";
 import { skipToken } from "@reduxjs/toolkit/query";
+import dynamic from "next/dynamic";
+
+const ProductPhotos = dynamic(() => import('@components/Product/ProductPhotos'), {
+  ssr: false,
+})
+const RatingStars = dynamic(() => import('@components/base/RatingStars'), {
+  ssr: false,
+})
 
 export default function ProductPage() {
   const router = useRouter();
@@ -68,7 +74,7 @@ export default function ProductPage() {
                     </span>
                   </div>
                 </div>
-                <ProductPhotos items={data.data.images} />
+                {data.data.images&&<ProductPhotos items={data.data.images} />}
                 <ProductOptions item={data} />
                 {/* {switchingData&&<ProductOptions item={switchingData} />} */}
               </div>

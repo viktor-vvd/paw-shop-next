@@ -5,9 +5,12 @@ import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { setCart_id } from "redux/reducers/cartSlice";
 import Cookies from "js-cookie"; */
-import RatingStars from "./RatingStars";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const RatingStars = dynamic(() => import('@components/base/RatingStars'), {
+  ssr: false,
+})
 
 const ProductCard = ({ item }) => {
   /* const dispatch = useDispatch(); 

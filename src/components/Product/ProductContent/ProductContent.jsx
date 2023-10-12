@@ -5,25 +5,21 @@ import ProductReviews from "./ProductTabs/ProductReviews";
 import AddReview from "./ProductTabs/AddReview";
 
 const ProductContent = ({ item }) => {
-  const [isDescrtiption, setIsDescrtiption] = useState(
-    item?.data.product.body ? true : false
-  );
-  const [tab, setTab] = useState(isDescrtiption ? 1 : 2);
+  const [tab, setTab] = useState(item?.data.product.body ? 1 : 2);
   useEffect(() => {
-    setIsDescrtiption(item?.data.product.body ? true : false);
-    setTab(isDescrtiption ? 1 : 2);
-  }, [item, isDescrtiption]);
+    setTab(item?.data.product.body ? 1 : 2);
+  }, [item]);
   return (
     <>
       <ProductNavigation
         reviews={item.data.product.comments_count}
-        isDescrtiption={isDescrtiption}
+        isDescrtiption={item?.data.product.body ? true : false}
         tab={tab}
         setTab={setTab}
       />
       <div className="container-horisontal outer-container product__content__container">
         <div className="container-vertical container product__content">
-          {isDescrtiption && tab == 1 && <ProductDescription item={item} />}
+          {item?.data.product.body && tab == 1 && <ProductDescription item={item} />}
           {tab == 2 && <ProductReviews item={item} />}
           {tab == 3 && <AddReview item={item} />}
         </div>

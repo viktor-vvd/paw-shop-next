@@ -3,10 +3,8 @@ import React, { useEffect } from "react";
 import { register } from "swiper/element";
 
 const ProductPhotos = ({ items }) => {
-  useEffect(() => {
   register();
-  }, [items]);
-
+  
   return (
     <div className="container-horisontal product-photos">
       <swiper-container

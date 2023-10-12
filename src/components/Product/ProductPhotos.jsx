@@ -1,20 +1,20 @@
+"use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { register } from "swiper/element";
 
 const ProductPhotos = ({ items }) => {
   register();
-  
+
   return (
     <div className="container-horisontal product-photos">
       <swiper-container
         class="container-horisontal slider product-photos__slider"
         loop="true"
         slides-per-view={1}
-        thumbs-swiper=".product-photos__list"
+        thumbs-swiper=".container-vertical.product-photos__list"
       >
-        {items &&
-          items.map((item, index) => (
+        {items.map((item, index) => (
             <swiper-slide key={index}>
               <div className="container-horisontal slider__photo">
                 <Image
@@ -31,12 +31,11 @@ const ProductPhotos = ({ items }) => {
       <swiper-container
         class="container-vertical product-photos__list"
         direction="vertical"
-        loop={false}
+        loop="true"
         slides-per-view={5}
         watch-slides-progress={true}
       >
-        {items &&
-          items.map((item, index) => (
+        {items.map((item, index) => (
             <swiper-slide key={index}>
               <div className="container-horisontal list__photo">
                 <Image

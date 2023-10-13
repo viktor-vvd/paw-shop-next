@@ -1,52 +1,43 @@
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { register } from "swiper/element";
 
 const ProductPhotos = ({ items }) => {
   const photosSlider = useRef(null);
-  const photosList = useRef(null);
+  const [sliderIndex, setSliderIndex] = useState(0);
   register();
-    useEffect(() => {
+
+  const handleonClick=(index)=>{
     const photosSliderContainer = photosSlider.current;
-    const photosListContainer = photosList.current;
+    photosSliderContainer.swiper.slideTo(index);
+  }
+
+  useEffect(() => {
+    const photosSliderContainer = photosSlider.current;
 
     const paramsSlider = {
-      loop: true,
+      loop: false,
       slidesPerView: 1,
-      thumbs: {
-        swiper: photosList
-      }
-    };
-    const paramsList = {
-      direction: "vertical",
-      loop: true,
-      slidesPerView: 5,
-      freeMode: true,
-      watchSlidesProgress: true,
     };
     if (items) {
-      Object.assign(photosListContainer, paramsList);
-      photosListContainer.initialize();
       Object.assign(photosSliderContainer, paramsSlider);
       photosSliderContainer.initialize();
+      handleonClick(0);
     }
-    /* photosSliderContainer.on("slideChange", () => {
-      photosListContainer.slideTo(swiper.activeIndex);
-    }); */
+    photosSliderContainer.swiper.on("slideChange", () => {
+      setSliderIndex(photosSliderContainer.swiper.activeIndex);
+    });
   }, [items]);
 
   return (
     <>
       {items && (
         <div className="container-horisontal product-photos">
+          {/* Mauricio I can't move it move it anymore */}
           <swiper-container
             class="container-horisontal slider product-photos__slider productPhotoSlider"
-            /* loop="true"
-            slides-per-view={1}
-            thumbs-swiper=".productPhotoList" */
-            init="false"
             ref={photosSlider}
-            /* thumbs-swiper={photosList.current} */
+            init="false"
           >
             {items.map((item, index) => (
               <swiper-slide key={index}>
@@ -62,30 +53,29 @@ const ProductPhotos = ({ items }) => {
               </swiper-slide>
             ))}
           </swiper-container>
-          <swiper-container
-            class="container-vertical product-photos__list productPhotoList"
-            /* direction="vertical"
-            loop="true"
-            slides-per-view={5}
-            free-mode="true"
-            watch-slides-progress="true" */
-            init="true"
-            ref={photosList}
+          <div
+            className="container-vertical product-photos__list productPhotoList"
           >
             {items.map((item, index) => (
-              <swiper-slide key={index}>
-                <div className="container-horisontal list__photo">
-                  <Image
-                    src={item.conversions.thumb.url}
-                    key={index}
-                    alt={"Image" + index}
-                    width={83}
-                    height={83}
-                  />
-                </div>
-              </swiper-slide>
+              <div
+                className={
+                  sliderIndex == index
+                    ? "container-horisontal list__photo list__photo_active"
+                    : "container-horisontal list__photo"
+                }
+                onClick={()=>handleonClick(index)}
+                key={index}
+              >
+                <Image
+                  src={item.conversions.thumb.url}
+                  key={index}
+                  alt={"Image" + index}
+                  width={83}
+                  height={83}
+                />
+              </div>
             ))}
-          </swiper-container>
+          </div>
         </div>
       )}
     </>

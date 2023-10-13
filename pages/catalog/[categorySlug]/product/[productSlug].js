@@ -4,7 +4,6 @@ import {
   getRunningQueriesThunk,
   useCatalogItemGETQuery,
 } from "@api/catalogApi";
-/* import PopularProducts from "@components/Home/PopularProducts"; */
 import ProductContent from "@components/Product/ProductContent/ProductContent";
 import ProductOptions from "@components/Product/ProductOptions";
 /* import Breadcrumbs from "@components/base/Breadcrumbs"; */
@@ -33,7 +32,6 @@ export default function ProductPage() {
       skip: router.isFallback,
     }
   );
-  console.log(data);
 
   return (
     <>

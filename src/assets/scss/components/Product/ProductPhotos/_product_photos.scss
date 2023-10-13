@@ -31,12 +31,6 @@
         max-height: 510rem;
         overflow-y: auto; 
 
-        .swiper-slide-active{
-            .list__photo {
-                border: 1px solid $accent;
-            }
-        }
-
         .list__photo {
             cursor: pointer;
             width: 83rem;
@@ -44,6 +38,11 @@
             border-radius: $border-radius;
             border: 1px solid $light-grey;
             overflow: hidden;
+
+            &_active{
+                border: 1px solid $accent;
+            }
+
             img{
                 object-fit: cover;
                 width: 100%;

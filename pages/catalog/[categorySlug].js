@@ -25,6 +25,7 @@ export default function CatalogPage() {
     page,
   } = JSON.parse(JSON.stringify(router.query));
 
+  console.log(sort);
   const [itemsPerPage, setitemsPerPage] = useState(1);
 
   const [currentPage, setCurrentPage] = useState(Number(page) || 1);
@@ -57,11 +58,11 @@ export default function CatalogPage() {
   const { data, isLoading, error } = useCatalogListGETQuery(
     typeof category === "string"
       ? {
-          page: page,
-          per_page: itemsPerPage,
-          sort: sort,
-          order: order,
-          category: category,
+        sort: sort||"default",
+        order: order||"desc",
+        page: page||1,
+        per_page: 1,
+        category: category||"cat",
         }
       : skipToken,
     {
@@ -126,18 +127,19 @@ export default function CatalogPage() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    const { categorySlug: category, sort, order, page } = context.query;
-    if (category) {
-      store.dispatch(
-        catalogListGET.initiate({
-          sort: sort,
-          order: order,
-          page: page,
-          per_page: 1,
-          category: category,
-        })
-      );
-    }
+      const { categorySlug: category, sort, order, page } = context.query;
+      if (category) {
+        store.dispatch(
+          catalogListGET.initiate({
+            sort: sort||"default",
+            order: order||"desc",
+            page: page||1,
+            per_page: 1,
+            category: category||"cat",
+          })
+        );
+      }
+  
 
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
     return {

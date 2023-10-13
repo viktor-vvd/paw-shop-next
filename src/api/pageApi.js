@@ -1,15 +1,21 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "./api.config";
+import { HYDRATE } from "next-redux-wrapper";
 
 export const pageApi = createApi({
   reducerPath: "pageApi",
   baseQuery: baseQuery,
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath];
+    }
+  },
   tagTypes: ["Pages"],
   endpoints: (builder) => ({
-    pageHomeGET: builder.query({
-      query: () => {
+    pageGET: builder.query({
+      query: (data) => {
         return {
-          url: `pages/home`,
+          url: `pages/${data}`,
           method: `GET`,
         };
       },
@@ -19,5 +25,7 @@ export const pageApi = createApi({
   }),
 });
 export const {
-  usePageHomeGETQuery,
+  usePageGETQuery,
+  util: { getRunningQueriesThunk,getRunningMutationsThunk },
 } = pageApi;
+export const { pageGET } = pageApi.endpoints;

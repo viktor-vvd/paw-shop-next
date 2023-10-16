@@ -6,7 +6,7 @@ import {
 } from "@api/catalogApi";
 import ProductContent from "@components/Product/ProductContent/ProductContent";
 import ProductOptions from "@components/Product/ProductOptions";
-/* import Breadcrumbs from "@components/base/Breadcrumbs"; */
+import Breadcrumbs from "@components/base/Breadcrumbs";
 import Preloader from "@components/base/Preloader";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -52,7 +52,7 @@ export default function ProductPage() {
           <div className="container-vertical page-container product">
             <section className="container-vertical outer-container product__wrapper">
               <div className="container-vertical container product__breadcrumbs">
-                {/* <Breadcrumbs item={{ name: data.data.name }} /> */}
+                <Breadcrumbs item={{ name: data.data.name }} />
               </div>
               <div className="container product__top">
                 <div className="product__header">

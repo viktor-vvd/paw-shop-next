@@ -8,9 +8,9 @@ import Cookies from "js-cookie"; */
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-const RatingStars = dynamic(() => import('@components/base/RatingStars'), {
+const RatingStars = dynamic(() => import("@components/base/RatingStars"), {
   ssr: false,
-})
+});
 
 const ProductCard = ({ item }) => {
   /* const dispatch = useDispatch(); 
@@ -44,6 +44,7 @@ const ProductCard = ({ item }) => {
           href={
             "/catalog/" + item.product.category.slug + "/product/" + item.slug
           }
+          passHref
         >
           <Image
             className="image"
@@ -59,6 +60,7 @@ const ProductCard = ({ item }) => {
         href={
           "/catalog/" + item.product.category.slug + "/product/" + item.slug
         }
+        passHref
         className="text product-card__title"
       >
         {item.name}

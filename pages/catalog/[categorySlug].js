@@ -10,13 +10,13 @@ import Sort from "@components/Catalog/Sort";
 import { useRouter } from "next/router";
 import Preloader from "@components/base/Preloader";
 import ProductCard from "@components/base/ProductCard";
-/* import Breadcrumbs from "components/base/Breadcrumbs"; */
+import Breadcrumbs from "@components/base/Breadcrumbs";
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { wrapper } from "@/redux/store";
 import { skipToken } from "@reduxjs/toolkit/query";
 
-export default function CatalogPage() {
+export default function Catalog() {
   const router = useRouter();
   const {
     categorySlug: category,
@@ -26,7 +26,6 @@ export default function CatalogPage() {
   } = JSON.parse(JSON.stringify(router.query));
 
   console.log(sort);
-  const [itemsPerPage, setitemsPerPage] = useState(1);
 
   const [currentPage, setCurrentPage] = useState(Number(page) || 1);
 
@@ -88,7 +87,7 @@ export default function CatalogPage() {
           )}
           <div className="container-vertical page-container catalog">
             <div className="container-vertical catalog__top">
-              {/* <Breadcrumbs item={{ slug: slug }} /> */}
+              <Breadcrumbs item={{ slug: category }} />
               <h2 className="title">Catalog</h2>
               <Category
                 item={{ slug: category }}

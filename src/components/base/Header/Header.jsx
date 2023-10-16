@@ -59,7 +59,7 @@ const Header = ({ isCheckout = false }) => {
       }
     >
       <div className="container-horisontal container header__container">
-        <Link href="/">
+        <Link href="/" passHref>
           <div className="container-horisontal header__logo">
             <Image
               className="logo__icon"
@@ -76,24 +76,34 @@ const Header = ({ isCheckout = false }) => {
             <nav className="header__nav">
               <ul className="container-horisontal nav__list">
                 <li className="nav__list__item">
-                  <Link href="/catalog/cat?sort=default&order=desc&page=1">
+                  <Link
+                    href="/catalog/cat?sort=default&order=desc&page=1"
+                    passHref
+                  >
                     For <b>CAT</b>
                   </Link>
                 </li>
                 <li className="nav__list__item">
-                  <Link href="/catalog/dog?sort=default&order=desc&page=1">
+                  <Link
+                    href="/catalog/dog?sort=default&order=desc&page=1"
+                    passHref
+                  >
                     For <b>DOG</b>
                   </Link>
                 </li>
                 <li className="nav__list__item">
-                  <Link href="/">Contacts</Link>
+                  <Link href="/" passHref>
+                    Contacts
+                  </Link>
                 </li>
                 <li className="nav__list__item">
-                  <Link href="/">Tracking</Link>
+                  <Link href="/" passHref>
+                    Tracking
+                  </Link>
                 </li>
               </ul>
             </nav>
-            <Link className="phone" href="tel:1-800-055-5566">
+            <Link className="phone" href="tel:1-800-055-5566" passHref>
               1-800-055-5566
             </Link>
             <div className="container-horisontal header__buttons">

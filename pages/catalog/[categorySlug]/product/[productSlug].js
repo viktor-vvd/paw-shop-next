@@ -1,7 +1,6 @@
 import PopularProducts from "@/components/base/PopularProducts";
 import {
   catalogItemGET,
-  getRunningQueriesThunk,
   useCatalogItemGETQuery,
 } from "@api/catalogApi";
 import ProductContent from "@components/Product/ProductContent/ProductContent";
@@ -10,29 +9,72 @@ import Breadcrumbs from "@components/base/Breadcrumbs";
 import Preloader from "@components/base/Preloader";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { wrapper } from "@/redux/store";
 import { skipToken } from "@reduxjs/toolkit/query";
 import dynamic from "next/dynamic";
+import {
+  commentsProductListGET,
+  getRunningQueriesThunk,
+  useCommentsProductListGETQuery,
+} from "@/api/commentsApi";
 
-const ProductPhotos = dynamic(() => import('@components/Product/ProductPhotos'), {
+const ProductPhotos = dynamic(
+  () => import("@components/Product/ProductPhotos"),
+  {
+    ssr: false,
+  }
+);
+const RatingStars = dynamic(() => import("@components/base/RatingStars"), {
   ssr: false,
-})
-const RatingStars = dynamic(() => import('@components/base/RatingStars'), {
-  ssr: false,
-})
+});
+
+async function fetchProductId(slug) {
+  const response = await fetch(
+    `https://dropshop.demka.online/api/variation/${slug}`,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        sHost: "paw.shop",
+        "Cache-Control": "no-cache",
+      },
+    }
+  );
+  const data = await response.json();
+  console.log("response data", data.data.product.id);
+  return data.data.product.id;
+}
 
 export default function ProductPage() {
   const router = useRouter();
   const { productSlug } = router.query;
-
+  const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading, error } = useCatalogItemGETQuery(
     typeof productSlug === "string" ? productSlug : skipToken,
     {
       skip: router.isFallback,
     }
   );
-
+  const { data: commentsData, isLoading: commentsisLoading } =
+    useCommentsProductListGETQuery(
+      /* typeof data?.data.product.id === "string"
+        ? {
+            id: data?.data.product.id,
+            data: { page: currentPage, per_page: 3 },
+          }
+        : skipToken */
+      {
+        id: typeof data?.data.product.id === "string" ? data?.data.product.id : skipToken,
+        data: { page: currentPage, per_page: 3 },
+      },
+      {
+        skip: router.isFallback,
+      }
+    );
+  const handlePagination = (selectedPage) => {
+    setCurrentPage(selectedPage);
+  };
   return (
     <>
       {error ? (
@@ -72,13 +114,17 @@ export default function ProductPage() {
                     </span>
                   </div>
                 </div>
-                {data.data.images&&<ProductPhotos items={data.data.images} />}
+                {data.data.images && <ProductPhotos items={data.data.images} />}
                 <ProductOptions item={data} />
                 {/* {switchingData&&<ProductOptions item={switchingData} />} */}
               </div>
             </section>
             <section className="container-vertical product__middle">
-              <ProductContent item={data} />
+              <ProductContent
+                item={data}
+                commentsData={commentsData}
+                handlePagination={handlePagination}
+              />
             </section>
             <PopularProducts
               title="You can like this"
@@ -95,8 +141,35 @@ export default function ProductPage() {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
     const productSlug = context.params?.productSlug;
+    /*     if (productSlug) {
+      const data = store.dispatch(catalogItemGET.initiate(productSlug));
+      console.log({ ssr: data.unwrap() });
+      data.then((response) => {
+        console.log({ ssrdata: response.data.data });
+        const d = store.dispatch(
+          commentsProductListGET.initiate({
+            id: response.data.data.product.id,
+            data: { page: 1, per_page: 3 },
+          })
+        );
+        
+        d.then((response2) => {
+          return response2.data;
+        });
+          console.log({comments: comments});
+      });
+    }
+ */
     if (productSlug) {
       store.dispatch(catalogItemGET.initiate(productSlug));
+    }
+    const productId = await fetchProductId(productSlug);
+    if (productId) {
+      store.dispatch(
+        commentsProductListGET.initiate({
+          id: productId,
+        })
+      );
     }
 
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
@@ -105,3 +178,44 @@ export const getServerSideProps = wrapper.getServerSideProps(
     };
   }
 );
+// Solution for fetch request
+// export async function getServerSideProps(context) {
+//   const { productSlug } = context.query;
+//   const productResponse = await fetch(
+//     `https://dropshop.demka.online/api/variation/${productSlug}`,
+//     {
+//       method: 'GET',
+//       headers: {
+//         Accept: 'application/json',
+//         sHost: 'paw.shop',
+//         'Cache-Control': 'no-cache',
+//       },
+//     }
+//   );
+//   const productData = await productResponse.json();
+//
+//   const productId = await fetchProductId(productSlug);
+//   const commentsResponse = await fetch(
+//     `https://dropshop.demka.online/api/comments/products/${productId}`,
+//     {
+//       method: 'GET',
+//       headers: {
+//         Accept: 'application/json',
+//         sHost: 'paw.shop',
+//         'Cache-Control': 'no-cache',
+//       },
+//     }
+//   );
+//   const commentsData = await commentsResponse.json();
+//   const allData = {
+//     productSlug,
+//     productId,
+//     product: productData,
+//     comments: commentsData,
+//   };
+//   return {
+//     props: {
+//       allData,
+//     },
+//   };
+// }  

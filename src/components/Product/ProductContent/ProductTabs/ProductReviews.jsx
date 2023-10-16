@@ -5,24 +5,21 @@ import RatingStars from "@components/base/RatingStars";
 import ReviewCard from "@components/base/ReviewCard";
 import React, { useEffect, useState } from "react";
 
-const ProductReviews = ({ item }) => {
-  const [commentsProductGET, { data, isFetching }] =
-    useLazyCommentsProductListGETQuery();
+const ProductReviews = ({ item, data, handlePagination }) => {
+  /* const [commentsProductGET, { data, isFetching }] =
+    useLazyCommentsProductListGETQuery(); */
 
-  const [itemsPerPage, setitemsPerPage] = useState(5);
 
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
+  /* useEffect(() => {
     commentsProductGET({
       id: item?.data.product.id,
       data: { page: currentPage, per_page: itemsPerPage },
     });
-  }, [currentPage, item]);
+  }, [currentPage, item]); */
 
   return (
     <>
-      {isFetching && <Preloader className="preloader_absolute" />}
+      {/* {isFetching && <Preloader className="preloader_absolute" />} */}
       {data?.data && (
           <div className="container-vertical product__reviews">
             <div className="container-horisontal product__reviews__rate">
@@ -40,10 +37,10 @@ const ProductReviews = ({ item }) => {
             </div>
             {data.meta.last_page > 1 && (
               <Pagination
-                setCurrentPage={setCurrentPage}
+                setCurrentPage={handlePagination}
                 pageCount={data.meta.last_page}
                 forcePage={data.meta.current_page}
-                onPageChange={setCurrentPage}
+                onPageChange={handlePagination}
               />
             )}
           </div>

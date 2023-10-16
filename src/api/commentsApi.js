@@ -1,9 +1,25 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "./api.config";
+import { HYDRATE } from "next-redux-wrapper";
+/* import {
+  buildCreateApi,
+  coreModule,
+  reactHooksModule,
+} from '@reduxjs/toolkit/query/react'
+
+const createApi = buildCreateApi(
+  coreModule(),
+  reactHooksModule({ unstable__sideEffectsInRender: true })
+) */
 
 export const commentsApi = createApi({
   reducerPath: "commentsApi",
   baseQuery: baseQuery,
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath];
+    }
+  },
   tagTypes: ["Comment"],
   endpoints: (builder) => ({
     commentsRandomListGET: builder.query({
@@ -40,9 +56,8 @@ export const commentsApi = createApi({
   }),
 });
 export const {
-  useCommentsRandomListGETQuery,
-  useLazyCommentsRandomListGETQuery,
   useCommentsProductListGETQuery,
   useLazyCommentsProductListGETQuery,
-  useCommentsAddPOSTMutation,
+  util: { getRunningQueriesThunk },
 } = commentsApi;
+export const { commentsProductListGET } = commentsApi.endpoints;

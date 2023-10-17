@@ -25,8 +25,6 @@ export default function Catalog() {
     page,
   } = JSON.parse(JSON.stringify(router.query));
 
-  console.log(sort);
-
   /* const [currentPage, setCurrentPage] = useState(Number(page) || 1);
 
   const [sortValue, setSortValue] = useState({

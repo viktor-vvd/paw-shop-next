@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import images from "@imports/ImagesImport";
-import RatingStars from "./RatingStars";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const RatingStars = dynamic(() => import("@components/base/RatingStars"), {
+  ssr: false,
+});
 
 const ReviewCard = ({ item, link = true }) => {
   const [maxImages, setMaxImages] = useState(3);

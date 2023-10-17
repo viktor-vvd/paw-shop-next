@@ -7,6 +7,12 @@ const Breadcrumbs = ({ item }) => {
   const routes = [
     { route: "/", href: ["/"], title: "Home", slug: null },
     {
+      route: "/catalog",
+      href: ["/catalog/all"],
+      title: "Catalog",
+      slug: null,
+    },
+    {
       route: "/catalog/[categorySlug]",
       href: ["/catalog/"],
       title: "Catalog",
@@ -19,8 +25,6 @@ const Breadcrumbs = ({ item }) => {
       slug: ["categorySlug", "productSlug"],
     },
   ];
-  const paths = usePathname();
-  const pathNames = paths.split("/").filter((path) => path);
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState([]);
 
@@ -28,16 +32,24 @@ const Breadcrumbs = ({ item }) => {
     const actualRoutes = routes.filter((route) =>
       router.route.includes(route.route)
     );
-    const breadcrumbs = actualRoutes.map((route) => {
+    const breadcrumbs = actualRoutes.map((route, i) => {
       let href = "";
+      let title = "";
       route.slug &&
         route?.slug.map((slug, index) => {
           href += route.href[index] + router.query[slug];
+          if (i < actualRoutes.length - 1) {
+            router.query[slug]
+              ? (title = router.query[slug])
+              : (title = route.title);
+          }
         });
-      href === "" && (href = "/");
+      href === "" && (href = route.href[0]);
+      (title === ""||!title) && (title = route.title);
       return {
         ...route,
         href: href,
+        title: title[0].toUpperCase() + title.slice(1),
       };
     });
     console.log(router);

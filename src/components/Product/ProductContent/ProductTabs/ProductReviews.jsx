@@ -1,9 +1,12 @@
 import { useLazyCommentsProductListGETQuery } from "@api/commentsApi";
 import Pagination from "@components/Catalog/Pagination";
 import Preloader from "@components/base/Preloader";
-import RatingStars from "@components/base/RatingStars";
 import ReviewCard from "@components/base/ReviewCard";
 import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+const RatingStars = dynamic(() => import("@components/base/RatingStars"), {
+  ssr: false,
+});
 
 const ProductReviews = ({ item, data, handlePagination }) => {
   /* const [commentsProductGET, { data, isFetching }] =

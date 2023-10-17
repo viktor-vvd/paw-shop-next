@@ -65,8 +65,7 @@ export default function ProductPage() {
           }
         : skipToken */
       {
-        id: typeof data?.data.product.id === "string" ? data?.data.product.id : skipToken,
-        data: { page: currentPage, per_page: 3 },
+        id: typeof data?.data.product.id === "string" ? data?.data.product.id : skipToken
       },
       {
         skip: router.isFallback,

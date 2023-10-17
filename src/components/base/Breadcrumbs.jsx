@@ -20,7 +20,7 @@ const Breadcrumbs = ({ item }) => {
     {
       route: "/catalog/[categorySlug]/product/[productSlug]",
       href: ["/catalog/", "/product/"],
-      title: item?.name || "Product",
+      title: "Product",
       slug: ["categorySlug", "productSlug"],
     },
   ];
@@ -31,13 +31,15 @@ const Breadcrumbs = ({ item }) => {
     const actualRoutes = routes.filter((route) =>
       router.route.includes(route.route)
     );
+    console.log(actualRoutes);
     const breadcrumbs = actualRoutes.map((route, i) => {
       let href = "";
       let title = "";
       route.slug &&
-        route?.slug.map((slug, index) => {
+        route.slug.map((slug, index) => {
           href += route.href[index] + router.query[slug];
           if (i < actualRoutes.length - 1) {
+            console.log(router.query[slug]);
             router.query[slug]
               ? (title = router.query[slug])
               : (title = route.title);
@@ -51,6 +53,7 @@ const Breadcrumbs = ({ item }) => {
         title: title[0].toUpperCase() + title.slice(1),
       };
     });
+    console.log(breadcrumbs);
     setBreadcrumbs(breadcrumbs);
   }, [router]);
 
@@ -64,7 +67,7 @@ const Breadcrumbs = ({ item }) => {
             </Link>
           ) : (
             <span className="text breadcrumbs__item breadcrumbs__item_active">
-              {route.title}
+              {item || route.title}
             </span>
           )}
           {index < breadcrumbs.length - 1 && (

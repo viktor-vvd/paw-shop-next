@@ -105,7 +105,7 @@ export default function Catalog() {
           )}
           <div className="container-vertical page-container catalog">
             <div className="container-vertical catalog__top">
-              <Breadcrumbs item={{ slug: category }} />
+              <Breadcrumbs item={category[0].toUpperCase() + category.slice(1)} />
               <h2 className="title">Catalog</h2>
               <Category
                 item={{ slug: category }}

@@ -31,7 +31,6 @@ const Breadcrumbs = ({ item }) => {
     const actualRoutes = routes.filter((route) =>
       router.route.includes(route.route)
     );
-    console.log(actualRoutes);
     const breadcrumbs = actualRoutes.map((route, i) => {
       let href = "";
       let title = "";
@@ -53,7 +52,6 @@ const Breadcrumbs = ({ item }) => {
         title: title[0].toUpperCase() + title.slice(1),
       };
     });
-    console.log(breadcrumbs);
     setBreadcrumbs(breadcrumbs);
   }, [router]);
 

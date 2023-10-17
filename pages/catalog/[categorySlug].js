@@ -15,6 +15,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { wrapper } from "@/redux/store";
 import { skipToken } from "@reduxjs/toolkit/query";
+import Error from "@/components/base/Error";
 
 export default function Catalog() {
   const router = useRouter();
@@ -68,9 +69,11 @@ export default function Catalog() {
       skip: router.isFallback,
     }
   );
-  const [isLoading, setIsLoading] = useState(false)
+
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    error && console.log(error);
     const start = () => {
       setIsLoading(true);
     };
@@ -87,10 +90,14 @@ export default function Catalog() {
     };
   }, []);
 
+  if (error) {
+    return <Error error={error} />;
+  }
+
   return (
     <>
       {error ? (
-        <>Oh no, there was an error</>
+        <Error error={error} />
       ) : router.isFallback || isLoading ? (
         <Preloader />
       ) : data ? (
@@ -105,7 +112,9 @@ export default function Catalog() {
           )}
           <div className="container-vertical page-container catalog">
             <div className="container-vertical catalog__top">
-              <Breadcrumbs item={category[0].toUpperCase() + category.slice(1)} />
+              <Breadcrumbs
+                item={category[0].toUpperCase() + category.slice(1)}
+              />
               <h2 className="title">Catalog</h2>
               <Category
                 item={{ slug: category }}

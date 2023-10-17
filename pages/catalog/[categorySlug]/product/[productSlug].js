@@ -1,8 +1,5 @@
 import PopularProducts from "@/components/base/PopularProducts";
-import {
-  catalogItemGET,
-  useCatalogItemGETQuery,
-} from "@api/catalogApi";
+import { catalogItemGET, useCatalogItemGETQuery } from "@api/catalogApi";
 import ProductContent from "@components/Product/ProductContent/ProductContent";
 import ProductOptions from "@components/Product/ProductOptions";
 import Breadcrumbs from "@components/base/Breadcrumbs";
@@ -18,6 +15,7 @@ import {
   getRunningQueriesThunk,
   useCommentsProductListGETQuery,
 } from "@/api/commentsApi";
+import Error from "@/components/base/Error";
 
 const ProductPhotos = dynamic(
   () => import("@components/Product/ProductPhotos"),
@@ -30,19 +28,24 @@ const RatingStars = dynamic(() => import("@components/base/RatingStars"), {
 });
 
 async function fetchProductId(slug) {
-  const response = await fetch(
-    `https://dropshop.demka.online/api/variation/${slug}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        sHost: "paw.shop",
-        "Cache-Control": "no-cache",
-      },
-    }
-  );
-  const data = await response.json();
-  return data.data.product.id;
+  try {
+    const response = await fetch(
+      `https://dropshop.demka.online/api/variation/${slug}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          sHost: "paw.shop",
+          "Cache-Control": "no-cache",
+        },
+      }
+    );
+    const data = await response.json();
+    return data.data.product.id;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
 
 export default function ProductPage() {
@@ -55,26 +58,24 @@ export default function ProductPage() {
       skip: router.isFallback,
     }
   );
-  const { data: commentsData } =
-    useCommentsProductListGETQuery(
-      typeof data?.data.product.id === "string"
-        ? {
-            id: data?.data.product.id,
-            data: { page: currentPage, per_page: 3 },
-          }
-        : skipToken
-      /* {
+  const { data: commentsData, error:commentsError } = useCommentsProductListGETQuery(
+    typeof data?.data.product.id === "string"
+      ? {
+          id: data?.data.product.id,
+          data: { page: currentPage, per_page: 3 },
+        }
+      : skipToken,
+    /* {
         id: typeof data?.data.product.id === "string" ? data?.data.product.id : skipToken,
         data: { page: currentPage, per_page: 3 },
-      } */,
-      {
-        skip: router.isFallback,
-      }
-    );
+      } */ {
+      skip: router.isFallback,
+    }
+  );
   const handlePagination = (selectedPage) => {
     setCurrentPage(selectedPage);
   };
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const start = () => {
@@ -94,11 +95,18 @@ export default function ProductPage() {
     };
   }, []);
 
+  if (error) {
+    return <Error error={error} />;
+  }
+
+  if (commentsError) {
+    return <Error error={commentsError} />;
+  }
 
   return (
     <>
-      {error ? (
-        <>Oh no, there was an error</>
+      {error||commentsError ? (
+        <Error error={error} />
       ) : router.isFallback || isLoading ? (
         <Preloader />
       ) : data ? (
@@ -240,4 +248,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
 //       allData,
 //     },
 //   };
-// }  
+// }

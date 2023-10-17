@@ -7,7 +7,7 @@ import Category from "@components/Catalog/Category";
 import Filter from "@components/Catalog/Filter";
 import Pagination from "@components/Catalog/Pagination";
 import Sort from "@components/Catalog/Sort";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Preloader from "@components/base/Preloader";
 import ProductCard from "@components/base/ProductCard";
 import Breadcrumbs from "@components/base/Breadcrumbs";
@@ -56,7 +56,7 @@ export default function Catalog() {
     /* setSortValue(JSON.parse(event.target.value));
     setCurrentPage(1); */
   };
-  const { data, isLoading, error } = useCatalogListGETQuery(
+  const { data, error } = useCatalogListGETQuery(
     typeof category === "string"
       ? {
           sort: sort || "default",
@@ -70,6 +70,24 @@ export default function Catalog() {
       skip: router.isFallback,
     }
   );
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const start = () => {
+      setIsLoading(true);
+    };
+    const end = () => {
+      setIsLoading(false);
+    };
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
 
   return (
     <>

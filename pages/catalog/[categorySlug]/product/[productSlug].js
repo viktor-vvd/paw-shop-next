@@ -8,8 +8,8 @@ import ProductOptions from "@components/Product/ProductOptions";
 import Breadcrumbs from "@components/base/Breadcrumbs";
 import Preloader from "@components/base/Preloader";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { Router, useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import { wrapper } from "@/redux/store";
 import { skipToken } from "@reduxjs/toolkit/query";
 import dynamic from "next/dynamic";
@@ -42,7 +42,6 @@ async function fetchProductId(slug) {
     }
   );
   const data = await response.json();
-  console.log("response data", data.data.product.id);
   return data.data.product.id;
 }
 
@@ -50,23 +49,24 @@ export default function ProductPage() {
   const router = useRouter();
   const { productSlug } = router.query;
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading, error } = useCatalogItemGETQuery(
+  const { data, error } = useCatalogItemGETQuery(
     typeof productSlug === "string" ? productSlug : skipToken,
     {
       skip: router.isFallback,
     }
   );
-  const { data: commentsData, isLoading: commentsisLoading } =
+  const { data: commentsData } =
     useCommentsProductListGETQuery(
-      /* typeof data?.data.product.id === "string"
+      typeof data?.data.product.id === "string"
         ? {
             id: data?.data.product.id,
             data: { page: currentPage, per_page: 3 },
           }
-        : skipToken */
-      {
-        id: typeof data?.data.product.id === "string" ? data?.data.product.id : skipToken
-      },
+        : skipToken
+      /* {
+        id: typeof data?.data.product.id === "string" ? data?.data.product.id : skipToken,
+        data: { page: currentPage, per_page: 3 },
+      } */,
       {
         skip: router.isFallback,
       }
@@ -74,6 +74,27 @@ export default function ProductPage() {
   const handlePagination = (selectedPage) => {
     setCurrentPage(selectedPage);
   };
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const start = () => {
+      setIsLoading(true);
+      setCurrentPage(1);
+    };
+    const end = () => {
+      setIsLoading(false);
+    };
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
+
+
   return (
     <>
       {error ? (

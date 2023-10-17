@@ -20,9 +20,8 @@ const ProductContent = ({ item, commentsData, handlePagination }) => {
       <div className="container-horisontal outer-container product__content__container">
         <div className="container-vertical container product__content">
           {item?.data.product.body && tab == 1 && <ProductDescription item={item} />}
-          {tab == 2 && <ProductReviews item={item} data={commentsData} />}
+          {tab == 2 && <ProductReviews item={item} data={commentsData} handlePagination={handlePagination} />}
           {tab == 3 && <AddReview item={item} />}
-          {/* <ProductReviews item={item} data={commentsData} handlePagination={handlePagination} /> */}
         </div>
       </div>
     </>

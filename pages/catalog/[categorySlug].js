@@ -27,18 +27,20 @@ export default function Catalog() {
 
   console.log(sort);
 
-  const [currentPage, setCurrentPage] = useState(Number(page) || 1);
+  /* const [currentPage, setCurrentPage] = useState(Number(page) || 1);
 
   const [sortValue, setSortValue] = useState({
     sort: sort || "default",
     order: order || "desc",
-  });
+  }); */
 
   const handlePagination = (selectedPage) => {
     router.push(
-      `/catalog/${category}?sort=${sort}&order=${order}&page=${selectedPage}`
+      `/catalog/${category}?sort=${sort || "default"}&order=${
+        order || "desc"
+      }&page=${selectedPage}`
     );
-    setCurrentPage(selectedPage);
+    /* setCurrentPage(selectedPage); */
   };
 
   const handleSortChange = (event) => {
@@ -51,17 +53,17 @@ export default function Catalog() {
           : `desc`
       }&page=1`
     );
-    setSortValue(JSON.parse(event.target.value));
-    setCurrentPage(1);
+    /* setSortValue(JSON.parse(event.target.value));
+    setCurrentPage(1); */
   };
   const { data, isLoading, error } = useCatalogListGETQuery(
     typeof category === "string"
       ? {
-        sort: sort||"default",
-        order: order||"desc",
-        page: page||1,
-        per_page: 1,
-        category: category||"all",
+          sort: sort || "default",
+          order: order || "desc",
+          page: page || 1,
+          per_page: 1,
+          category: category || "all",
         }
       : skipToken,
     {
@@ -91,14 +93,19 @@ export default function Catalog() {
               <h2 className="title">Catalog</h2>
               <Category
                 item={{ slug: category }}
-                setCurrentPage={setCurrentPage}
+                /* setCurrentPage={setCurrentPage} */
               />
             </div>
             <div className="container-vertical outer__container catalog__bottom">
               <div className="container-horisontal container filter-sort">
                 <Filter />
                 <Sort
-                  sortValue={sortValue}
+                  sortValue={
+                    /* sortValue */ {
+                      sort: sort || "default",
+                      order: order || "desc",
+                    }
+                  }
                   handleSortChange={handleSortChange}
                 />
               </div>
@@ -110,7 +117,6 @@ export default function Catalog() {
               </div>
               {data && data.meta.last_page > 1 && (
                 <Pagination
-                  setCurrentPage={setCurrentPage}
                   pageCount={data.meta.last_page}
                   forcePage={data.meta.current_page}
                   onPageChange={handlePagination}
@@ -126,19 +132,18 @@ export default function Catalog() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-      const { categorySlug: category, sort, order, page } = context.query;
-      if (category) {
-        store.dispatch(
-          catalogListGET.initiate({
-            sort: sort||"default",
-            order: order||"desc",
-            page: page||1,
-            per_page: 1,
-            category: category||"all",
-          })
-        );
-      }
-  
+    const { categorySlug: category, sort, order, page } = context.query;
+    if (category) {
+      store.dispatch(
+        catalogListGET.initiate({
+          sort: sort || "default",
+          order: order || "desc",
+          page: page || 1,
+          per_page: 1,
+          category: category || "all",
+        })
+      );
+    }
 
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
     return {

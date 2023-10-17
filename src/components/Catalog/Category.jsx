@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React from "react";
 /* import { useNavigate } from "react-router-dom"; */
 
-const Category = ({ item, setCurrentPage }) => {
+const Category = ({ item/* , setCurrentPage */ }) => {
   const router = useRouter();
   const {
     categoryParams: category,
@@ -23,7 +23,7 @@ const Category = ({ item, setCurrentPage }) => {
         order || "desc"
       }&page=1`
     );
-    setCurrentPage(1);
+    /* setCurrentPage(1); */
   };
 
   return (

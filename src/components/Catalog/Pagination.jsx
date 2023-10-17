@@ -2,14 +2,10 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 
 const Pagination = ({
-  setCurrentPage = () => {},
   pageCount,
   forcePage = 1,
   onPageChange = () => {},
 }) => {
-  const handlePageClick = (event) => {
-    setCurrentPage(event.selected + 1);
-  };
 
   return (
     <>

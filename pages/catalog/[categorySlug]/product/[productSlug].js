@@ -198,7 +198,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
     };
   }
 );
-// Solution for fetch request
+
+/* Solution for fetch request*/
+
 // export async function getServerSideProps(context) {
 //   const { productSlug } = context.query;
 //   const productResponse = await fetch(

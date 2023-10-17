@@ -62,7 +62,7 @@ export default function Catalog() {
           sort: sort || "default",
           order: order || "desc",
           page: page || 1,
-          per_page: 1,
+          per_page: 2,
           category: category || "all",
         }
       : skipToken,
@@ -139,7 +139,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
           sort: sort || "default",
           order: order || "desc",
           page: page || 1,
-          per_page: 1,
+          per_page: 2,
           category: category || "all",
         })
       );

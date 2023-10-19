@@ -40,7 +40,6 @@ const ProductReviews = ({ item, data, handlePagination }) => {
             </div>
             {data.meta.last_page > 1 && (
               <Pagination
-                setCurrentPage={handlePagination}
                 pageCount={data.meta.last_page}
                 forcePage={data.meta.current_page}
                 onPageChange={handlePagination}

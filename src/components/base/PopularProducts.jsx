@@ -5,6 +5,7 @@ import { useCatalogListGETQuery } from "@api/catalogApi";
 import Preloader from "@components/base/Preloader";
 import Link from "next/link";
 import Image from "next/image";
+import Svg from "./Svg";
 
 const PopularProducts = ({
   title = "Popular products",
@@ -41,17 +42,17 @@ const PopularProducts = ({
               <span className="text__button">
                 Products for <span className="text__button cat">CAT</span>
               </span>
-              <Image
+              <Svg
                 className="for-cat-dog__button__icon"
-                src={images["catIcon"]}
+                name="catIcon"
                 loading="lazy"
                 alt="cat"
                 width="30"
                 height="30"
               />
-              <Image
+              <Svg
                 className="button__icon_arrow button__icon_arrow_right"
-                src={images["topRightArrow"]}
+                name="topRightArrow"
                 loading="lazy"
                 alt="arrow"
                 width="10"
@@ -64,17 +65,17 @@ const PopularProducts = ({
               <span className="text__button">
                 Products for <span className="text__button dog">DOG</span>
               </span>
-              <Image
+              <Svg
                 className="for-cat-dog__button__icon"
-                src={images["dogIcon"]}
+                name="dogIcon"
                 loading="lazy"
                 alt="arrow"
                 width="30"
                 height="30"
               />
-              <Image
+              <Svg
                 className="button__icon_arrow button__icon_arrow_right"
-                src={images["topRightArrow"]}
+                name="topRightArrow"
                 loading="lazy"
                 alt="arrow"
                 width="10"

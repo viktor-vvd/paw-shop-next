@@ -1,5 +1,4 @@
 import React from "react";
-import images from "@imports/ImagesImport";
 import Button from "./Button";
 /* import { cartApi, useAddToCartPOSTMutation } from "api/cartApi";
 import { useDispatch } from "react-redux";
@@ -94,7 +93,7 @@ const ProductCard = ({ item }) => {
         <Button
           value="+"
           title="Add to cart"
-          icon={images["basket"]}
+          icon="basket"
           onClick={handleAddToCart}
         />
       </div>

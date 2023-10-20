@@ -3,6 +3,7 @@ import images from "@imports/ImagesImport";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Svg from "./Svg";
 const RatingStars = dynamic(() => import("@components/base/RatingStars"), {
   ssr: false,
 });
@@ -71,9 +72,9 @@ const ReviewCard = ({ item, link = true }) => {
           href="/"
         >
           See the product{" "}
-          <Image
+          <Svg
             className="review-card__link__icon"
-            src={images["topRightPurpleArrow"]}
+            name="topRightPurpleArrow"
             loading="lazy"
             alt="arrow"
             width="10"

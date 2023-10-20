@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import images from "@imports/ImagesImport";
 import Menu from "@components/base/Header/Menu";
 /* import { useDispatch, useSelector } from "react-redux";
 import { setAuthModal, setCartModal } from "redux/reducers/modalsSlice";
@@ -8,7 +7,6 @@ import { useLogoutUserMutation } from "api/authApi";
 import { removeTokens } from "redux/reducers/authSlice"; */
 import { IoLogOutOutline } from "react-icons/io5";
 import Link from "next/link";
-import Image from "next/image";
 import Svg from "../Svg";
 /* import { removeCart } from "redux/reducers/cartSlice";
 import { catalogApi } from "api/catalogApi";
@@ -62,9 +60,9 @@ const Header = ({ isCheckout = false }) => {
       <div className="container-horisontal container header__container">
         <Link href="/" passHref>
           <div className="container-horisontal header__logo">
-            <Image
+            <Svg 
               className="logo__icon"
-              src={images["logo"]}
+              name="logo"
               alt="logo"
               width="37"
               height="43"
@@ -130,19 +128,11 @@ const Header = ({ isCheckout = false }) => {
                   title="Authorise"
                   /* onClick={() => dispatch(setAuthModal(true))}
                 /> */}
-                <Svg className="profile" name="user" />{/* <svg >
-                <use href={"../../../../public/sprite.svg#user"} />
-              </svg> */}
-                {/* <Image
-                  className="profile"
-                  src={images["user"]}
-                  loading="lazy"
+                <Svg className="profile" name="user" loading="lazy"
                   alt="user"
                   width="26"
                   height="26"
-                  title="Authorise"
-                  /* onClick={() => dispatch(setAuthModal(true))} 
-                /> */}
+                  title="Authorise" />
                 {/*)} */}
               </div>
               <div className="container-horisontal header__cart">
@@ -150,9 +140,9 @@ const Header = ({ isCheckout = false }) => {
                   className="container-horisontal header__cart__button"
                   /* onClick={() => dispatch(setCartModal(true))} */
                 >
-                  <Image
+                  <Svg
                     className="header__cart__icon"
-                    src={images["basket"]}
+                    name="basket"
                     loading="lazy"
                     alt="cart"
                     width="26"

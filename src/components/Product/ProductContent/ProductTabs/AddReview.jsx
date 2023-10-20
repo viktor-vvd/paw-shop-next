@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
 import * as yup from "yup";
 import Image from "next/image";
+import Svg from "@/components/base/Svg";
 
 const fillColorArray = [
   "#f17a45",
@@ -126,9 +127,9 @@ const AddReview = ({ item }) => {
                 /* {...register("pics")} */
               />
               <div className="button button_white form__add-file__button">
-                <Image
+                <Svg
                   className="button__icon"
-                  src={images["gallery"]}
+                  name="gallery"
                   alt="icon"
                   width="20"
                   height="20"
@@ -144,9 +145,9 @@ const AddReview = ({ item }) => {
                     key={index}
                   >
                     <span className="text">{image.name}</span>
-                    <Image
+                    <Svg
                       className="images__item__icon"
-                      src={images["closeMini"]}
+                      name="closeMini"
                       alt="close"
                       width="12"
                       height="12"

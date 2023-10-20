@@ -9,6 +9,7 @@ import { removeTokens } from "redux/reducers/authSlice"; */
 import { IoLogOutOutline } from "react-icons/io5";
 import Link from "next/link";
 import Image from "next/image";
+import Svg from "../Svg";
 /* import { removeCart } from "redux/reducers/cartSlice";
 import { catalogApi } from "api/catalogApi";
 import { cartApi } from "api/cartApi"; */
@@ -119,7 +120,7 @@ const Header = ({ isCheckout = false }) => {
                     onClick={onLogout}
                   />
                  ) : ( */}
-                <Image
+                {/* <Image
                   className="profile"
                   src={images["user"]}
                   loading="lazy"
@@ -127,8 +128,21 @@ const Header = ({ isCheckout = false }) => {
                   width="26"
                   height="26"
                   title="Authorise"
-                  /* onClick={() => dispatch(setAuthModal(true))} */
-                />
+                  /* onClick={() => dispatch(setAuthModal(true))}
+                /> */}
+                <Svg className="profile" name="user" />{/* <svg >
+                <use href={"../../../../public/sprite.svg#user"} />
+              </svg> */}
+                {/* <Image
+                  className="profile"
+                  src={images["user"]}
+                  loading="lazy"
+                  alt="user"
+                  width="26"
+                  height="26"
+                  title="Authorise"
+                  /* onClick={() => dispatch(setAuthModal(true))} 
+                /> */}
                 {/*)} */}
               </div>
               <div className="container-horisontal header__cart">

@@ -4,6 +4,8 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@images/*": ["./public/images/*"],
+      "@public/*": ["./public/*"],
+      "@svg/*": ["./public/svg/*"],
       "@styles/*": ["./src/assets/*"],
       "@imports/*": ["./src/imports/*"],
       "@redux/*": ["./src/redux/*"],

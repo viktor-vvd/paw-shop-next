@@ -5,14 +5,15 @@ const nextConfig = {
     styledComponents: true
   },
   images: {
-    remotePatterns: [
+    domains: ["dropshop.demka.online"],
+    /* remotePatterns: [
       {
         protocol: "https",
         hostname: "dropshop.demka.online",
         port: "",
         pathname: "/**",
       },
-    ],
+    ], */
   },
 };
 

@@ -11,7 +11,7 @@
 
     &__date {
         color: $dark-grey;
-        font-family: Montserrat;
+        font-family: $text-font;
         font-size: 13rem;
         font-weight: 400;
         height: 13rem;
@@ -26,7 +26,7 @@
     // .review-card__name
 
     &__name {
-        font-family: Montserrat;
+        font-family: $text-font;
         font-size: 15rem;
         font-weight: 500;
     }

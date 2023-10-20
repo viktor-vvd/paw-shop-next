@@ -46,7 +46,7 @@
                 border-radius: $border-radius;
                 background: linear-gradient(179deg, #E9A904 0%, #FFC805 100%);
                 color: #fff;
-                font-family: Montserrat Alternates;
+                font-family: $base-font;
                 font-size: 15rem;
                 font-weight: 500;
                 line-height: 18rem;
@@ -90,7 +90,7 @@
 
         &__text {
             color: $dark-grey;
-            font-family: Montserrat;
+            font-family: $text-font;
             font-size: 13rem;
             font-weight: 400;
         }
@@ -111,7 +111,7 @@
         }
 
         .price {
-            font-family: Montserrat;
+            font-family: $text-font;
             font-size: 20rem;
             font-weight: 500;
 

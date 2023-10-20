@@ -51,7 +51,7 @@
 
             &__item {
                 a {
-                    font-family: Montserrat Alternates;
+                    font-family: $base-font;
                     font-size: 15rem;
                     font-weight: 400;
                     color: #000;
@@ -107,13 +107,13 @@
                 background: $gradient;
                 color: #FFF;
                 text-align: center;
-                font-family: Montserrat;
+                font-family: $text-font;
                 font-size: 15rem;
                 font-weight: 500;
             }
 
             &__sum {
-                font-family: Montserrat;
+                font-family: $text-font;
                 font-size: 15rem;
                 font-weight: 500;
             }

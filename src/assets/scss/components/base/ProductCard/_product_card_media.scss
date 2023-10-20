@@ -94,7 +94,7 @@
 
             &__text {
                 color: $dark-grey;
-                font-family: Montserrat;
+                font-family: $text-font;
                 font-size: 13rem;
                 font-weight: 400;
             }
@@ -103,7 +103,7 @@
 
         &__bottom {
             .price {
-                font-family: Montserrat;
+                font-family: $text-font;
                 font-size: 16rem;
                 font-weight: 500;
 

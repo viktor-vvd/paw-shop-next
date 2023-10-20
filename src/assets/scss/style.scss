@@ -1,7 +1,7 @@
 @import 'additional/reset';
 @import 'additional/variables';
 @import 'additional/mixins';
-@import url(https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Inter&display=swap);
+/* @import url(https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Inter&display=swap); */
 
 html {
    font-size: calc(1vw / 19.2);
@@ -159,7 +159,7 @@ html {
 
 .phone {
    color: #000;
-   font-family: Montserrat;
+   font-family: $text-font;
    font-size: 20rem;
    font-style: normal;
    font-weight: 500;

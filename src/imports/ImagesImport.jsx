@@ -61,6 +61,9 @@ import gallery from "@svg/gallery.svg";
 import closeMini from "@svg/closeMini.svg";
 import leftPurpleArrow from "@svg/leftPurpleArrow.svg";
 import loadingGif from "@images/loadingGif.gif";
+import mastercard2 from "@public/images/mastercard2.webp";
+import visa2 from "@public/images/visa2.webp";
+import paypal from "@public/images/paypal.webp";
 
 const images = {
   logo: logo,
@@ -126,6 +129,9 @@ const images = {
   closeMini: closeMini,
   loadingGif: loadingGif,
   leftPurpleArrow: leftPurpleArrow,
+  mastercard2: mastercard2,
+  visa2: visa2,
+  paypal: paypal,
 };
 
 /* function importAll(r) {

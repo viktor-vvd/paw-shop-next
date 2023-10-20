@@ -12,13 +12,13 @@
  }
 
 @mixin logo__text {
-    font-family: Amatic SC;
+    font-family: $logo-font;
    font-size: 28rem;
    font-weight: 700;
 }
 
 @mixin text__button {
-    font-family: Montserrat Alternates;
+    font-family: $base-font;
    font-size: 15rem;
    font-style: normal;
    font-weight: 400;
@@ -33,34 +33,34 @@
 }
 
 @mixin headline {
-    font-family: Montserrat Alternates;
+    font-family: $base-font;
    font-size: 90rem;
    font-weight: 900;
    line-height: 110%;
 }
 
 @mixin title {
-    font-family: Montserrat Alternates;
+    font-family: $base-font;
    font-size: 36rem;
    font-weight: 700;
    line-height: 44rem;
 }
 
 @mixin subtitle {
-    font-family: Montserrat Alternates;
+    font-family: $base-font;
    font-size: 20rem;
    font-weight: 500;
 }
 
 @mixin text {
-    font-family: Montserrat;
+    font-family: $text-font;
    font-size: 15rem;
    font-weight: 400;
    line-height: 18rem;
 }
 
 @mixin text_light {
-    font-family: Montserrat;
+    font-family: $text-font;
     font-size: 15rem;
     font-weight: 300;
     line-height: 18rem;
@@ -71,7 +71,7 @@
 }
 
 @mixin text_alternates {
-    font-family: Montserrat Alternates;
+    font-family: $base-font;
 }
 
 @mixin text__button_hover {

@@ -20,11 +20,20 @@ export const amatic_sc = localFont({
   ],
 });
 
+export const inter = localFont({
+  src: [
+    {
+      path: './../src/assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf',
+      weight: '400',
+    },
+  ],
+});
+
 export const montserrat = Montserrat({
-  weight: ['500'],
-  style: ['normal'],
+  weight: ['300', '400', '500'],
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-montserrat',
 });
 
 const DefaultLayout = ({ children }) => {
@@ -35,6 +44,7 @@ const DefaultLayout = ({ children }) => {
           --font-montserrat_alternates: ${montserrat_alternates.style.fontFamily};
           --font-amatic_sc: ${amatic_sc.style.fontFamily};
           --font-montserrat: ${montserrat.style.fontFamily};
+          --font-inter: ${inter.style.fontFamily};
         }
       `}</style>
     <Header />

@@ -1,11 +1,9 @@
 import React from "react";
-import images from "@imports/ImagesImport";
 import ProductCard from "@components/base/ProductCard";
 import { useCatalogListGETQuery } from "@api/catalogApi";
 import Preloader from "@components/base/Preloader";
 import Link from "next/link";
-import Image from "next/image";
-import Svg from "./Svg";
+import { CatIcon, DogIcon, TopRightArrow } from "@public/svg";
 
 const PopularProducts = ({
   title = "Popular products",
@@ -42,17 +40,15 @@ const PopularProducts = ({
               <span className="text__button">
                 Products for <span className="text__button cat">CAT</span>
               </span>
-              <Svg
+              <CatIcon
                 className="for-cat-dog__button__icon"
-                name="catIcon"
                 loading="lazy"
                 alt="cat"
                 width="30"
                 height="30"
               />
-              <Svg
+              <TopRightArrow
                 className="button__icon_arrow button__icon_arrow_right"
-                name="topRightArrow"
                 loading="lazy"
                 alt="arrow"
                 width="10"
@@ -65,17 +61,15 @@ const PopularProducts = ({
               <span className="text__button">
                 Products for <span className="text__button dog">DOG</span>
               </span>
-              <Svg
+              <DogIcon
                 className="for-cat-dog__button__icon"
-                name="dogIcon"
                 loading="lazy"
                 alt="arrow"
                 width="30"
                 height="30"
               />
-              <Svg
+              <TopRightArrow
                 className="button__icon_arrow button__icon_arrow_right"
-                name="topRightArrow"
                 loading="lazy"
                 alt="arrow"
                 width="10"

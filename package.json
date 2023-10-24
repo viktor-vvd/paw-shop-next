@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "open http://localhost:3000 && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "icons": "npx @svgr/cli --out-dir public/images/icons -- public/images/svg-icons",
+    "create-index": "node ./src/imports/SvgImport.mjs public/svg public/svg/index.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
     "@reduxjs/toolkit": "^1.9.7",
+    "create-index": "^2.6.0",
     "glob": "^10.3.10",
     "next": "13.5.4",
     "next-redux-wrapper": "^8.1.0",

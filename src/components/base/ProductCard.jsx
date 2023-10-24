@@ -7,6 +7,7 @@ import Cookies from "js-cookie"; */
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { Basket } from "@public/svg";
 const RatingStars = dynamic(() => import("@components/base/RatingStars"), {
   ssr: false,
 });
@@ -93,7 +94,7 @@ const ProductCard = ({ item }) => {
         <Button
           value="+"
           title="Add to cart"
-          icon="basket"
+          Icon={Basket}
           onClick={handleAddToCart}
         />
       </div>

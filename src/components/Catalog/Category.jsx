@@ -1,6 +1,6 @@
+import { CatIcon, DogIcon } from "@public/svg";
 import { useRouter } from "next/router";
 import React from "react";
-import Svg from "../base/Svg";
 /* import { useNavigate } from "react-router-dom"; */
 
 const Category = ({ item/* , setCurrentPage */ }) => {
@@ -41,9 +41,8 @@ const Category = ({ item/* , setCurrentPage */ }) => {
             <span className="text__button">
               For <span className="cat">CAT</span>
             </span>
-            <Svg
+            <CatIcon
               className="button__icon"
-              name="catIcon"
               loading="lazy"
               alt="arrow"
               width="30"
@@ -64,9 +63,8 @@ const Category = ({ item/* , setCurrentPage */ }) => {
             <span className="text__button">
               For <span className="dog">DOG</span>
             </span>
-            <Svg
+            <DogIcon
               className="button__icon"
-              name="dogIcon"
               loading="lazy"
               alt="arrow"
               width="30"

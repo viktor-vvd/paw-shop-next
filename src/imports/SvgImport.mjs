@@ -1,67 +1,48 @@
-import { promises as fs } from "node:fs";
-import * as path from "node:path";
-import { glob } from "glob";
-import { parse } from "node-html-parser";
+import { promises as fs } from 'node:fs';
+import * as path from 'node:path';
 
-const cwd = process.cwd();
-const inputDir = path.join(cwd, "public", "svg");
-const inputDirRelative = path.relative(cwd, inputDir);
-const outputDir = path.join(cwd, "public");
-const outputDirRelative = path.relative(cwd, outputDir);
-const files = glob
-  .sync("**/*.svg", {
-    cwd: inputDir,
-  })
-  .sort((a, b) => a.localeCompare(b));
-if (files.length === 0) {
-  console.log(`No SVG files found in ${inputDirRelative}`);
-  process.exit(0);
+// Function to convert a string to camelCase style
+function convertToCamelCase(input) {
+  return input
+    .replace(/[^a-zA-Z0-9]/g, ' ') // Replace all characters except letters and numbers with spaces
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1)/* .toLowerCase() */) // Capitalize the first letter and make the rest lowercase
+    .join('');
 }
-// The relative paths are just for cleaner logs
-console.log(`Generating sprite for ${inputDirRelative}`);
 
-const spritesheetContent = await generateSvgSprite({
-  files,
-  inputDir,
-});
-await writeIfChanged(path.join(outputDir, "sprite.svg"), spritesheetContent);
-/**
- * Outputs an SVG string with all the icons as symbols
- */
-async function generateSvgSprite({ files, inputDir }) {
-  // Each SVG becomes a symbol and we wrap them all in a single SVG
-  const symbols = await Promise.all(
-    files.map(async (file) => {
-      const input = await fs.readFile(path.join(inputDir, file), "utf8");
-      const root = parse(input);
-      const svg = root.querySelector("svg");
-      if (!svg) throw new Error("No SVG element found");
-      svg.tagName = "symbol";
-      svg.setAttribute("id", file.replace(/\.svg$/, ""));
-      svg.removeAttribute("xmlns");
-      svg.removeAttribute("xmlns:xlink");
-      svg.removeAttribute("version");
-      svg.removeAttribute("width");
-      svg.removeAttribute("height");
-      return svg.toString().trim();
-    })
-  );
-  return [
-    `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0">`,
-    `<defs>`, // for semantics: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/defs
-    ...symbols,
-    `</defs>`,
-    `</svg>`,
-  ].join("\n");
-}
-/**
- * Each write can trigger dev server reloads
- * so only write if the content has changed
- */
-async function writeIfChanged(filepath, newContent) {
-  const currentContent = await fs.readFile(filepath, "utf8");
-  if (currentContent !== newContent) {
-    return fs.writeFile(filepath, newContent, "utf8");
+const generateIndexFile = async () => {
+  try {
+    // Use process.argv to get command line arguments
+    const [, , svgFolderPath, iconsIndexPath] = process.argv;
+
+    // Resolve paths
+    const cwd = process.cwd();
+    const resolvedSvgFolderPath = path.join(cwd, svgFolderPath);
+    const resolvedIconsIndexPath = path.join(cwd, iconsIndexPath);
+
+    // Read all SVG files in the folder (asynchronously)
+    const svgFiles = await fs.readdir(resolvedSvgFolderPath);
+    const filteredSvgFiles = svgFiles.filter(file => file.endsWith('.svg'));
+
+    // Generate import and export statements
+    const importStatements = filteredSvgFiles.map(file => `import ${convertToCamelCase(file.replace('.svg', ''))} from '@${path.relative(process.cwd(), path.join(resolvedSvgFolderPath, file)).replace(/\\/g, '/')}';`);
+    const exportStatements = filteredSvgFiles.map(file => `${convertToCamelCase(file.replace('.svg', ''))},`);
+
+    // Write the generated code to the file
+    const code = [
+      '// Automatically generated index file for SVG icons',
+      ...importStatements,
+      '',
+      'export {',
+      ...exportStatements,
+      '};',
+    ].join('\n');
+
+    await fs.writeFile(resolvedIconsIndexPath, code, 'utf-8');
+    console.log('Index file generated successfully.');
+  } catch (error) {
+    console.error('Error generating index file:', error);
   }
-}
+};
+
+generateIndexFile();

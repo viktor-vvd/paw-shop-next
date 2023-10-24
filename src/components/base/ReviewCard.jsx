@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import images from "@imports/ImagesImport";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import Svg from "./Svg";
+import { TopRightPurpleArrow } from "@public/svg";
 const RatingStars = dynamic(() => import("@components/base/RatingStars"), {
   ssr: false,
 });
@@ -72,9 +71,8 @@ const ReviewCard = ({ item, link = true }) => {
           href="/"
         >
           See the product{" "}
-          <Svg
+          <TopRightPurpleArrow
             className="review-card__link__icon"
-            name="topRightPurpleArrow"
             loading="lazy"
             alt="arrow"
             width="10"

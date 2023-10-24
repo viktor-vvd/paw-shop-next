@@ -7,7 +7,7 @@ import { useLogoutUserMutation } from "api/authApi";
 import { removeTokens } from "redux/reducers/authSlice"; */
 import { IoLogOutOutline } from "react-icons/io5";
 import Link from "next/link";
-import Svg from "../Svg";
+import { Basket, Logo, User } from "@public/svg";
 /* import { removeCart } from "redux/reducers/cartSlice";
 import { catalogApi } from "api/catalogApi";
 import { cartApi } from "api/cartApi"; */
@@ -60,9 +60,8 @@ const Header = ({ isCheckout = false }) => {
       <div className="container-horisontal container header__container">
         <Link href="/" passHref>
           <div className="container-horisontal header__logo">
-            <Svg 
+            <Logo
               className="logo__icon"
-              name="logo"
               alt="logo"
               width="37"
               height="43"
@@ -128,11 +127,14 @@ const Header = ({ isCheckout = false }) => {
                   title="Authorise"
                   /* onClick={() => dispatch(setAuthModal(true))}
                 /> */}
-                <Svg className="profile" name="user" loading="lazy"
+                <User
+                  className="profile"
+                  loading="lazy"
                   alt="user"
                   width="26"
                   height="26"
-                  title="Authorise" />
+                  title="Authorise"
+                />
                 {/*)} */}
               </div>
               <div className="container-horisontal header__cart">
@@ -140,9 +142,8 @@ const Header = ({ isCheckout = false }) => {
                   className="container-horisontal header__cart__button"
                   /* onClick={() => dispatch(setCartModal(true))} */
                 >
-                  <Svg
+                  <Basket
                     className="header__cart__icon"
-                    name="basket"
                     loading="lazy"
                     alt="cart"
                     width="26"

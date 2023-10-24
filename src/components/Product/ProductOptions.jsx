@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import images from "@imports/ImagesImport";
 import Button from "@components/base/Button";
 /* import { useAddToCartPOSTMutation } from "@api/cartApi"; */
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Svg from "../base/Svg";
+import { FacebookColorMini, Return, TelegramColor, TwitterColor } from "@public/svg";
 /* import { setCart_id } from "redux/reducers/cartSlice";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom"; */
@@ -145,7 +144,7 @@ const ProductOptions = ({ item }) => {
         </div>
       </div>
       <div className="container-horisontal product-options__return">
-        <Svg name="returnIcon" alt={"return"} />
+        <Return alt={"return"} />
         <span className="text">Free return within 15 days</span>
       </div>
       <div className="container-horisontal product-options__wrapper">
@@ -155,21 +154,21 @@ const ProductOptions = ({ item }) => {
             <Button
               type="button"
               className="button_white telegram"
-              icon="telegramColor"
+              Icon={TelegramColor}
             />
           </li>
           <li className="container-horisontal">
             <Button
               type="button"
               className="button_white facebook"
-              icon="facebookColorMini"
+              Icon={FacebookColorMini}
             />
           </li>
           <li className="container-horisontal">
             <Button
               type="button"
               className="button_white twitter"
-              icon="twitterColor"
+              Icon={TwitterColor}
             />
           </li>
         </ul>

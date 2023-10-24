@@ -9,7 +9,7 @@ const Error = ({ error }) => {
         |
       </span>
       <span className="subtitle">
-        {error.data.message}
+        {error.data?.message}
       </span>
     </div>
   );

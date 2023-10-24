@@ -58,6 +58,7 @@ export const commentsApi = createApi({
 export const {
   useCommentsProductListGETQuery,
   useLazyCommentsProductListGETQuery,
+  useCommentsAddPOSTMutation,
   util: { getRunningQueriesThunk },
 } = commentsApi;
 export const { commentsProductListGET } = commentsApi.endpoints;

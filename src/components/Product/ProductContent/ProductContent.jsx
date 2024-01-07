@@ -17,7 +17,7 @@ const ProductContent = ({ item, commentsData, handlePagination }) => {
         tab={tab}
         setTab={setTab}
       />
-      <div className="container-horisontal outer-container product__content__container">
+      <div className="container-horizontal outer-container product__content__container">
         <div className="container-vertical container product__content">
           {item?.data.product.body && tab == 1 && <ProductDescription item={item} />}
           {tab == 2 && <ProductReviews item={item} data={commentsData} handlePagination={handlePagination} />}

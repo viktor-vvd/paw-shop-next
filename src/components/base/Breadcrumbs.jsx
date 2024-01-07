@@ -56,7 +56,7 @@ const Breadcrumbs = ({ item }) => {
   }, [router]);
 
   return (
-    <ul className="container-horisontal breadcrumbs">
+    <ul className="container-horizontal breadcrumbs">
       {breadcrumbs.map((route, index) => (
         <React.Fragment key={index}>
           {index < breadcrumbs.length - 1 ? (

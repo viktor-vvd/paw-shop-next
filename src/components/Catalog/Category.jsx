@@ -27,8 +27,8 @@ const Category = ({ item/* , setCurrentPage */ }) => {
 
   return (
     <div className="container-vertical category">
-      <div className="container-horisontal category__buttons">
-        <label className="container-horisontal" name="category">
+      <div className="container-horizontal category__buttons">
+        <label className="container-horizontal" name="category">
           <input
             type="radio"
             name="category"
@@ -37,7 +37,7 @@ const Category = ({ item/* , setCurrentPage */ }) => {
             className="category__input"
             onChange={handleOptionChange}
           />
-          <div className="container-horisontal category__button cat">
+          <div className="container-horizontal category__button cat">
             <span className="text__button">
               For <span className="cat">CAT</span>
             </span>
@@ -50,7 +50,7 @@ const Category = ({ item/* , setCurrentPage */ }) => {
             />
           </div>
         </label>
-        <label className="container-horisontal" name="category">
+        <label className="container-horizontal" name="category">
           <input
             type="radio"
             name="category"
@@ -59,7 +59,7 @@ const Category = ({ item/* , setCurrentPage */ }) => {
             className="category__input"
             onChange={handleOptionChange}
           />
-          <div className="container-horisontal category__button dog">
+          <div className="container-horizontal category__button dog">
             <span className="text__button">
               For <span className="dog">DOG</span>
             </span>

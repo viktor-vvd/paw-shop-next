@@ -53,13 +53,13 @@ const Header = ({ isCheckout = false }) => {
     <header
       className={
         offset > 3
-          ? "container-horisontal outer__container header header_scrolled"
-          : "container-horisontal outer__container header"
+          ? "container-horizontal outer__container header header_scrolled"
+          : "container-horizontal outer__container header"
       }
     >
-      <div className="container-horisontal container header__container">
+      <div className="container-horizontal container header__container">
         <Link href="/" passHref>
-          <div className="container-horisontal header__logo">
+          <div className="container-horizontal header__logo">
             <Logo
               className="logo__icon"
               alt="logo"
@@ -72,7 +72,7 @@ const Header = ({ isCheckout = false }) => {
         {!isCheckout && (
           <>
             <nav className="header__nav">
-              <ul className="container-horisontal nav__list">
+              <ul className="container-horizontal nav__list">
                 <li className="nav__list__item">
                   <Link
                     href="/catalog/cat?sort=default&order=desc&page=1"
@@ -104,7 +104,7 @@ const Header = ({ isCheckout = false }) => {
             <Link className="phone" href="tel:1-800-055-5566" passHref>
               1-800-055-5566
             </Link>
-            <div className="container-horisontal header__buttons">
+            <div className="container-horizontal header__buttons">
               <div>
                 {/*{auth ? ( 
                   <IoLogOutOutline
@@ -137,9 +137,9 @@ const Header = ({ isCheckout = false }) => {
                 />
                 {/*)} */}
               </div>
-              <div className="container-horisontal header__cart">
+              <div className="container-horizontal header__cart">
                 <div
-                  className="container-horisontal header__cart__button"
+                  className="container-horizontal header__cart__button"
                   /* onClick={() => dispatch(setCartModal(true))} */
                 >
                   <Basket

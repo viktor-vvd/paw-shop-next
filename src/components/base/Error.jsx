@@ -2,7 +2,7 @@ import React from "react";
 
 const Error = ({ error }) => {
   return (
-    <div className="container-horisontal page-container error">
+    <div className="container-horizontal page-container error">
         <span className="title">
         {error.status}
       </span><span className="title">

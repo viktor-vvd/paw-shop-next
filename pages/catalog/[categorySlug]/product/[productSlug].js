@@ -131,8 +131,8 @@ export default function ProductPage() {
                     <span className="product__code_SKU">SKU:</span>{" "}
                     {data.data.sku}
                   </span>
-                  <div className="container-horisontal rate">
-                    <div className="container-horisontal rate__stars">
+                  <div className="container-horizontal rate">
+                    <div className="container-horizontal rate__stars">
                       <RatingStars
                         value={parseFloat(data.data.product.rating)}
                       />

@@ -32,16 +32,16 @@ const ProductPhotos = ({ items }) => {
   return (
     <>
       {items && (
-        <div className="container-horisontal product-photos">
+        <div className="container-horizontal product-photos">
           {/* Mauricio I can't move it move it anymore */}
           <swiper-container
-            class="container-horisontal slider product-photos__slider productPhotoSlider"
+            class="container-horizontal slider product-photos__slider productPhotoSlider"
             ref={photosSlider}
             init="false"
           >
             {items.map((item, index) => (
               <swiper-slide key={index}>
-                <div className="container-horisontal slider__photo">
+                <div className="container-horizontal slider__photo">
                   <Image
                     src={item.conversions.preview.url}
                     key={index}
@@ -60,8 +60,8 @@ const ProductPhotos = ({ items }) => {
               <div
                 className={
                   sliderIndex == index
-                    ? "container-horisontal list__photo list__photo_active"
-                    : "container-horisontal list__photo"
+                    ? "container-horizontal list__photo list__photo_active"
+                    : "container-horizontal list__photo"
                 }
                 onClick={()=>handleonClick(index)}
                 key={index}

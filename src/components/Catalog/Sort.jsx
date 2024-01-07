@@ -9,9 +9,9 @@ const Sort = ({sortValue = { sort: "default", order: "desc" }, handleSortChange}
   const { slug } = useParams(); */
 
   return (
-    <div className="container-horisontal sort__container">
+    <div className="container-horizontal sort__container">
       <span className="text sort__text">Sort by:</span>
-      <div className="container-horisontal sort__wrapper">
+      <div className="container-horizontal sort__wrapper">
         <select
           className="text sort"
           name="sortValue"

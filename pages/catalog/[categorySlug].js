@@ -122,7 +122,7 @@ export default function Catalog() {
               />
             </div>
             <div className="container-vertical outer__container catalog__bottom">
-              <div className="container-horisontal container filter-sort">
+              <div className="container-horizontal container filter-sort">
                 <Filter />
                 <Sort
                   sortValue={
@@ -134,7 +134,7 @@ export default function Catalog() {
                   handleSortChange={handleSortChange}
                 />
               </div>
-              <div className="container-horisontal container catalog__products">
+              <div className="container-horizontal container catalog__products">
                 {data?.data &&
                   data.data.map((item, index) => (
                     <ProductCard item={item} key={index} />
